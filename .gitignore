@@ -1,0 +1,28 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# Runtime data (generated, not committed)
+data/
+runs/
+sandbox/
+logs/
+*.db
+*.db-wal
+*.db-shm
+*.pid
+eval/cache/
+
+# Editor and OS
+.DS_Store
+.vscode/
+.idea/
