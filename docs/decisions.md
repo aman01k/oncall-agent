@@ -74,3 +74,13 @@ The project uses the Python 3.14 already installed on the development Mac. A cle
 - Qwen produced malformed tool calls.
 - Gemini returned 403 because its free tier is unavailable for this project.
 - Groq's limit of 8,000 tokens per minute per model means the agent loop must keep requests small.
+
+## 2026-11-12: Reproducible local failure lab
+
+- Each fault has a causal release and a later metadata-only decoy in the separate sandbox repo. Both releases actually run and are recorded in deploy history.
+- Traffic is seeded, rate-limited and bounded to 24 concurrent requests. Transport failures are reported separately from HTTP errors.
+- The memory fault retains touched random bytes and returns overload HTTP 503 after 96 MiB retained; the supervisor enforces a 192 MiB RSS limit and records its own kills explicitly.
+- Request telemetry and supervisor RSS/events share a separate WAL-mode metrics database; the request telemetry currently covers the generated traffic.
+- Log IDs include a process prefix to remain unique across restarts. Process state includes creation time to reject stale/reused PIDs.
+
+**Reason:** all three faults need real, observable evidence and reliable recovery before the read-only tools and agent can be built. The small memory cap bounds local resource use. A restart delays a leak; rollback removes its code. See [local-lab.md](local-lab.md).

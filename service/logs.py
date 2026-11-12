@@ -5,12 +5,14 @@ from __future__ import annotations
 import json
 import logging
 import threading
+import uuid
 from datetime import datetime, timezone
 from itertools import count
 from pathlib import Path
 
 _ids = count(1)
 _lock = threading.Lock()
+_session = uuid.uuid4().hex[:10]
 
 
 def utc_now() -> str:
@@ -19,7 +21,7 @@ def utc_now() -> str:
 
 def _next_line_id() -> str:
     with _lock:
-        return f"L{next(_ids)}"
+        return f"L{_session}-{next(_ids)}"
 
 
 class JsonFormatter(logging.Formatter):
@@ -34,6 +36,7 @@ class JsonFormatter(logging.Formatter):
             "ts": utc_now(),
             "level": record.levelname,
             "service": self.service,
+            "version": self.version,
             "msg": record.getMessage(),
         }
         extra = getattr(record, "fields", None)

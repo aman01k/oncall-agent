@@ -24,6 +24,8 @@ from sqlalchemy import bindparam, text
 
 from . import config, db, logs
 from .logs import log, utc_now
+from .pricing import price_total
+from .cache import record_checkout
 
 settings = config.load()
 logger = logs.setup(settings.log_file, settings.service_name, settings.version)
@@ -98,6 +100,7 @@ class CheckoutRequest(BaseModel):
 
 @app.post("/checkout")
 def checkout(req: CheckoutRequest):
+    record_checkout(req.customer_id)
     with engine.begin() as conn:
         skus = [i.sku for i in req.items]
         rows = conn.execute(
@@ -109,7 +112,7 @@ def checkout(req: CheckoutRequest):
         missing = [s for s in skus if s not in prices]
         if missing:
             raise HTTPException(status_code=400, detail=f"unknown sku: {missing}")
-        total = round(sum(prices[i.sku] * i.qty for i in req.items), 2)
+        total = price_total(prices, req.items, req.customer_id)
         result = conn.execute(
             text("INSERT INTO orders (customer_id, total, currency, created_at)"
                  " VALUES (:c, :t, :cur, :ts)"),
