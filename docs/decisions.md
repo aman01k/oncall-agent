@@ -62,3 +62,15 @@ The live view, replay, grader, evaluation table and blog figures all read the sa
 The project uses the Python 3.14 already installed on the development Mac. A clean virtual environment installed and imported every dependency in `requirements.txt` without errors. The exact versions are recorded in `requirements.lock.txt`.
 
 **Reason:** installing a second Python version would cost time and add nothing.
+
+## 2026-11-12: Groq gpt-oss-120b with tool_choice=required
+
+- **Main model:** Groq `openai/gpt-oss-120b`, called with `tool_choice="required"`.
+- **Development model:** `openai/gpt-oss-20b`, which has separate limits.
+- **Gemini:** dropped for now.
+
+**Reason:** see [provider_check.md](provider_check.md).
+- With `tool_choice=required`, both gpt-oss models submitted the correct report 3/3 times. With `auto`, the 120b model wrote its answer as plain text in 2 of 3 runs.
+- Qwen produced malformed tool calls.
+- Gemini returned 403 because its free tier is unavailable for this project.
+- Groq's limit of 8,000 tokens per minute per model means the agent loop must keep requests small.

@@ -150,14 +150,14 @@ def rate_headers(headers) -> dict:
     return {k: v for k, v in headers.items() if "ratelimit" in k.lower() or k.lower() == "retry-after"}
 
 
-def run_once(client: OpenAI, model: str, max_steps: int = 6) -> dict:
+def run_once(client: OpenAI, model: str, tool_choice: str = "auto", max_steps: int = 6) -> dict:
     messages: list[dict] = [{"role": "system", "content": SYSTEM}, {"role": "user", "content": ALERT}]
     calls, tools_used, report, error = [], [], None, None
     for step in range(max_steps):
         t0 = time.perf_counter()
         try:
             raw = client.chat.completions.with_raw_response.create(
-                model=model, messages=messages, tools=TOOLS, tool_choice="auto", temperature=0.2,
+                model=model, messages=messages, tools=TOOLS, tool_choice=tool_choice, temperature=0.2,
             )
         except APIStatusError as e:
             error = {"step": step, "status": e.status_code, "body": str(e.body)[:500],
@@ -211,7 +211,7 @@ def run_once(client: OpenAI, model: str, max_steps: int = 6) -> dict:
     }
 
 
-def check_provider(name: str, runs: int) -> dict | None:
+def check_provider(name: str, runs: int, tool_choice: str = "auto") -> dict | None:
     cfg = PROVIDERS[name]
     key = os.getenv(cfg["key_env"])
     if not key:
@@ -226,10 +226,10 @@ def check_provider(name: str, runs: int) -> dict | None:
         for m in ids:
             print(f"    {m}")
         return {"provider": name, "models": ids, "model": None}
-    print(f"  using model: {model}")
+    print(f"  using model: {model} (tool_choice={tool_choice})")
     results = []
     for i in range(runs):
-        r = run_once(client, model)
+        r = run_once(client, model, tool_choice)
         results.append(r)
         status = "ok" if r["correct"] else ("ERROR " + str(r["error"]["status"]) if r["error"] else "wrong answer")
         print(f"  run {i + 1}: {status} | llm calls {r['llm_calls']} | tools {r['tools_used']} | "
@@ -240,7 +240,8 @@ def check_provider(name: str, runs: int) -> dict | None:
             print(f"    rate-limit headers: {r['calls'][-1]['headers']}")
         if i + 1 < runs:
             time.sleep(3)
-    return {"provider": name, "base_url": cfg["base_url"], "model": model, "models": ids, "runs": results}
+    return {"provider": name, "base_url": cfg["base_url"], "model": model, "tool_choice": tool_choice,
+            "models": ids, "runs": results}
 
 
 def main() -> int:
@@ -248,6 +249,9 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("providers", nargs="*", default=list(PROVIDERS))
     parser.add_argument("--runs", type=int, default=2)
+    parser.add_argument("--model", help="override the model for every provider checked")
+    parser.add_argument("--tool-choice", default="auto", choices=["auto", "required"],
+                        help="'required' forces a tool call every step (the agent ends only via submit_report)")
     args = parser.parse_args()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -257,7 +261,9 @@ def main() -> int:
         if name not in PROVIDERS:
             print(f"unknown provider {name}; choose from {list(PROVIDERS)}")
             return 2
-        result = check_provider(name, args.runs)
+        if args.model:
+            os.environ[PROVIDERS[name]["model_env"]] = args.model
+        result = check_provider(name, args.runs, args.tool_choice)
         if result:
             any_ran = True
             path = OUT_DIR / f"{name}-{stamp}.json"
