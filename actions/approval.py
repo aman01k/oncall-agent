@@ -9,6 +9,8 @@ from pathlib import Path
 
 from agent.runner import ROOT, emit, save_json, utc_now
 from agent.schemas import Report
+from agent.schemas import verify_evidence
+from agent.causality import EVIDENCE_POLICY, causal_errors
 
 
 def health():
@@ -39,6 +41,14 @@ def decide(run_directory, index, approve, actor):
         if decision_file.exists():
             raise ValueError("This action already has a human decision")
         action = report.proposed_actions[index]
+        if approve and metadata.get("evidence_policy") == EVIDENCE_POLICY:
+            rows = [json.loads(line) for line in (run_directory / "trace.jsonl").read_text().splitlines()]
+            outputs = {r["tool_call_id"]: r["result"] for r in rows if r["kind"] == "tool"}
+            revisions = {r["tool_call_id"]: r["result"]["revision"] for r in rows
+                         if r["kind"] == "tool" and r["name"] == "git_show" and "revision" in r["result"]}
+            proof_errors = verify_evidence(report, outputs) + causal_errors(report, revisions)
+            if proof_errors:
+                raise ValueError("Causal evidence check failed: " + "; ".join(proof_errors))
         if action.kind == "rollback" and action.target != "v1.0.0":
             raise ValueError("Only the verified healthy release v1.0.0 is allowlisted")
         if action.kind == "restart" and action.target not in (None, ""):

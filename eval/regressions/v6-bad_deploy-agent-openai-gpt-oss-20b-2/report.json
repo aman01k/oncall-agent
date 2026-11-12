@@ -1,0 +1,46 @@
+{
+  "summary": "The checkout\u2011api service experienced a sudden spike in HTTP 5xx responses, exceeding the 5% threshold within a 2\u2011minute window. Metrics show 75 5xx errors out of 391 requests, a 19% error rate. The spike coincides with the deployment of version v1.1.0, which introduced a faulty pricing module that references an undefined \"currency\" key, causing runtime exceptions. The issue was detected by the alert system and confirmed by query metrics. The root cause is a bad deploy that introduced a schema/logic error.",
+  "failure_type": "bad_deploy",
+  "culprit": "v1.1.0",
+  "confidence": "medium",
+  "timeline": [
+    {
+      "ts": "2026-11-12T12:05:40.582Z",
+      "description": "v1.0.0 deployed"
+    },
+    {
+      "ts": "2026-11-12T12:05:41.551Z",
+      "description": "v1.1.0 deployed"
+    },
+    {
+      "ts": "2026-11-12T12:06:09.881Z",
+      "description": "Alert fired: 5xx rate above 5% (19% observed)"
+    },
+    {
+      "ts": "2026-11-12T12:06:10.020Z",
+      "description": "Alert received by incident management"
+    }
+  ],
+  "evidence": [
+    {
+      "tool_call_id": "T1",
+      "quote": "Observed 75 HTTP 5xx responses among 391 requests. RSS ranged from 0.3 to 75.8 MiB."
+    },
+    {
+      "tool_call_id": "T2",
+      "quote": "v1.1.0"
+    }
+  ],
+  "next_steps": [
+    "Investigate the pricing module for undefined keys",
+    "Verify that rollback restores service stability",
+    "Update deployment pipeline to run unit tests for new features"
+  ],
+  "proposed_actions": [
+    {
+      "kind": "rollback",
+      "target": "v1.0.0",
+      "reason": "Restore service stability after faulty deployment"
+    }
+  ]
+}

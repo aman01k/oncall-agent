@@ -15,6 +15,7 @@ from openai import OpenAI, APIStatusError, APIConnectionError
 from pydantic import ValidationError
 
 from agent.schemas import Report, verify_evidence, strings
+from agent.causality import EVIDENCE_POLICY, causal_errors
 from telemetry.tools import Tools, SCHEMAS, schema
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +26,9 @@ Do not expose private chain-of-thought; record only concise hypotheses and findi
 Check logs, metrics and deployments. Inspect git_show on plausible causal commits:
 the latest deploy can be metadata-only, so inspect an earlier commit if needed.
 Use runbook search for guidance. All times are relative to the fixed alert clock.
+Inspect the exact named culprit with git_show. A known diagnosis must cite a changed
+service Python line from that revision, plus an observed log or metric. A metadata-only
+release cannot satisfy code provenance. Use unknown if the evidence does not support a cause.
 Finish through submit_report. Cite exact short verbatim substrings from actual tool results,
 using the T-number in each tool result as tool_call_id and its E-number as quote_id. Cite at least two independent
 tools. Prefer string values (exception, code diff, event kind, deploy summary).
@@ -101,6 +105,8 @@ CONTROL_SCHEMAS[-1]["function"]["parameters"] = submission_schema()
 
 class Provider:
     def __init__(self, model=None, cache=True, seed=0, directory=None):
+        if os.getenv("ONCALL_OFFLINE") == "1":
+            raise RuntimeError("Offline mode: provider requests are disabled")
         load_dotenv(ROOT / ".env")
         key = os.getenv("GROQ_API_KEY")
         if not key:
@@ -129,6 +135,7 @@ class Provider:
                 "Write an incident report as JSON matching the required schema. Do not call tools. "
                 "Use only the supplied evidence. Select T-number tool_call_id and E-number quote_id from citation_options. Do not generate quote text. "
                 "At least one evidence item MUST come from search_logs or query_metrics. Metadata alone does not demonstrate an observed failure. "
+                "The named culprit must match an inspected revision with service_code_changed=true. Cite a service_lines excerpt from that same revision. "
                 "Name the causal code release, not the later metadata-only decoy. "
                 "Known failure types: bad_deploy, db_pool_exhaustion, memory_leak, unknown. "
                 "Actions only permit rollback to v1.0.0 or restart with null target; include a reason. "
@@ -208,10 +215,10 @@ def investigate(source, output=None, model=None, mode="agent", seed=0, cache=Tru
     tools = Tools(source)
     metadata = {"id": directory.name, "source": str(Path(source).resolve()), "mode": mode,
                 "model": model or os.getenv("GROQ_MODEL") or "openai/gpt-oss-120b", "seed": seed,
-                "started_at": utc_now(), "status": "running", "alert": tools.alert}
+                "started_at": utc_now(), "status": "running", "alert": tools.alert, "evidence_policy": EVIDENCE_POLICY}
     save_json(directory / "run.json", metadata)
     emit(directory, "start", **metadata)
-    outputs, names, seen = {}, {}, set()
+    outputs, names, seen, revisions = {}, {}, set(), {}
     messages = [{"role": "system", "content": SYSTEM},
                 {"role": "user", "content": json.dumps(tools.alert)}]
     report = None
@@ -221,6 +228,8 @@ def investigate(source, output=None, model=None, mode="agent", seed=0, cache=Tru
     def execute(name, args):
         call_id = f"T{len(outputs) + 1}"
         result = tools.call(name, args)
+        if name == "git_show" and "revision" in result:
+            revisions[call_id] = result["revision"]
         options = []
         if name == "git_show" and "diff" in result:
             options += [line for line in result["diff"].splitlines()
@@ -230,8 +239,11 @@ def investigate(source, output=None, model=None, mode="agent", seed=0, cache=Tru
         result["citation_options"] = [{"id": f"E{i+1}", "quote": text}
                                       for i, text in enumerate(list(dict.fromkeys(options))[:18])]
         if len(json.dumps(result)) > 4000:
+            facts = result.get("revision")
             result = {"content": json.dumps(result)[:2200], "truncated": True,
                       "citation_options": result["citation_options"][:4]}
+            if facts:
+                result["revision"] = facts
             while len(json.dumps(result)) > 4000:
                 result["content"] = result["content"][:-200]
         outputs[call_id] = result
@@ -247,7 +259,9 @@ def investigate(source, output=None, model=None, mode="agent", seed=0, cache=Tru
             facts = [execute(name, args) for name, args in fixed]
             deploys = tools.list_deploys()["deploys"]
             if deploys:
-                facts.append(execute("git_show", {"revision": deploys[0]["sha"]}))
+                # Same proof policy, stronger nonadaptive collector: inspect every returned deploy once.
+                for revision in dict.fromkeys(row["sha"] for row in deploys):
+                    facts.append(execute("git_show", {"revision": revision}))
             messages.append({"role": "user", "content": "Fixed pipeline evidence: " + json.dumps(facts)})
         for step in range(12 if mode == "agent" else 1):
             force = mode == "baseline" or step >= 8 or total_tokens >= 21000
@@ -265,7 +279,8 @@ def investigate(source, output=None, model=None, mode="agent", seed=0, cache=Tru
                                 options.pop()
                             message["content"] = json.dumps({"tool_call_id": original.get("tool_call_id"),
                                 "tool_name": original.get("tool_name"), "result": {"compacted": True,
-                                "summary": value.get("summary", "Full result remains in trace"), "citation_options": options}})
+                                "summary": value.get("summary", "Full result remains in trace"),
+                                "revision": value.get("revision"), "citation_options": options}})
                         except (ValueError, AttributeError):
                             message["content"] = content[:650] + " [older result compacted]"
             available = [CONTROL_SCHEMAS[-1]] if force else ([CONTROL_SCHEMAS[0]] if step == 0 else SCHEMAS + CONTROL_SCHEMAS)
@@ -300,14 +315,15 @@ def investigate(source, output=None, model=None, mode="agent", seed=0, cache=Tru
                                 del citation["quote_id"]
                         candidate = Report.model_validate(args)
                         errors = verify_evidence(candidate, outputs)
+                        errors += causal_errors(candidate, revisions)
                         if len({names.get(e.tool_call_id) for e in candidate.evidence}) < 2 and candidate.failure_type != "unknown":
                             errors.append("Cite two independent tools")
                         if candidate.failure_type != "unknown" and not any(names.get(e.tool_call_id) in {"search_logs", "query_metrics"} for e in candidate.evidence):
                             errors.append("Include an observed log or metric citation, not only deployment metadata")
                         if errors:
                             raise ValueError("; ".join(errors))
-                        code_cited = any(names.get(e.tool_call_id) == "git_show" and e.quote.lstrip().startswith("+")
-                                         and not e.quote.lstrip().startswith("+++") for e in candidate.evidence)
+                        code_cited = any(e.tool_call_id in revisions and any(e.quote in line for line in revisions[e.tool_call_id]["service_lines"])
+                                         for e in candidate.evidence)
                         if candidate.confidence == "high" and not code_cited:
                             candidate.confidence = "medium"
                         if candidate.failure_type == "unknown":

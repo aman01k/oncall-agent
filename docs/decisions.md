@@ -106,3 +106,9 @@ Both free Groq models reached their daily quotas during development/evaluation. 
 ## 2026-11-12: Restrict evidence and stale approvals
 
 Commit lookup exposes only releases actually deployed before the alert, even if the snapshot contains other sandbox revisions. The dashboard preserves executed decision records and disables further actions once a deployment changes. The executor independently enforces the same stale-snapshot check.
+
+## 2026-11-12: Named-revision causal proof, offline regression audit and v7
+
+A known report must match its named culprit to an inspected revision that changes service Python code and cite a changed line from that same revision. Quote provenance alone allowed real excerpts to support the wrong named deploy. The executor rechecks this proof for causal-v1 reports before approved actions.
+
+The fixed collector now inspects all returned recent deployed diffs once, so both methods can meet the same rule. v6 CSV outcomes remain frozen; v7 records the new protocol and cannot resume historical batches. Offline audits do not count as model trials or accuracy improvements. Existing recordings remain historical and read-only. Presentation material and replay rehearsal use no model quota.

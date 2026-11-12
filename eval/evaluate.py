@@ -6,9 +6,10 @@ import uuid
 from pathlib import Path
 from agent.runner import ROOT, investigate
 from eval.grader import grade
+from agent.causality import EVIDENCE_POLICY
 
 
-def evaluate(model, runs=1, scenario=None, experiment="v6", retry_failed=False):
+def evaluate(model, runs=1, scenario=None, experiment="v7", retry_failed=False):
     results_dir = ROOT / "eval/results"
     results_dir.mkdir(parents=True, exist_ok=True)
     rows = []
@@ -20,6 +21,12 @@ def evaluate(model, runs=1, scenario=None, experiment="v6", retry_failed=False):
             for seed in range(runs):
                 identity = f"{experiment}-{key.stem}-{mode}-{model.replace('/', '-')}-{seed}"
                 output = ROOT / "runs/eval" / identity
+                if experiment in {"v4", "v5", "v6"}:
+                    raise ValueError("Historical experiments are frozen. Use --experiment v7 with the new causal-proof policy.")
+                if (output / "run.json").exists():
+                    prior = json.loads((output / "run.json").read_text())
+                    if prior.get("evidence_policy") != EVIDENCE_POLICY:
+                        raise ValueError("Experiment policy changed; choose a new experiment name rather than mixing outcomes")
                 if retry_failed and (output / "run.json").exists():
                     previous = json.loads((output / "run.json").read_text())
                     if previous["status"] in {"failed", "interrupted"}:
@@ -50,12 +57,15 @@ if __name__ == "__main__":
     parser.add_argument("--model", default="openai/gpt-oss-120b")
     parser.add_argument("--runs", type=int, default=1)
     parser.add_argument("--scenario")
-    parser.add_argument("--experiment", default="v6")
+    parser.add_argument("--experiment", default="v7")
     parser.add_argument("--retry-failed", action="store_true", help="Archive failed attempts and resume from cache; completed diagnoses are never rerun")
     args = parser.parse_args()
     if not 1 <= args.runs <= 5:
         parser.error("Use between 1 and 5 independent seeds")
     if not args.experiment.replace('-', '').isalnum():
         parser.error("experiment must be alphanumeric with optional hyphens")
-    results = evaluate(args.model, args.runs, args.scenario, args.experiment, args.retry_failed)
+    try:
+        results = evaluate(args.model, args.runs, args.scenario, args.experiment, args.retry_failed)
+    except ValueError as exc:
+        parser.exit(2, f"Evaluation cannot start: {exc}\n")
     raise SystemExit(2 if any(row["status"] != "completed" for row in results) else 0)

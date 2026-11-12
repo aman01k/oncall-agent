@@ -21,7 +21,7 @@ def evidence(tmp_path):
         "requests": [{"ts": "2026-11-12T10:09:00Z", "status": 500, "latency_ms": 2}],
         "samples": [{"ts": "2026-11-12T10:09:59Z", "rss_mb": 70}], "events": [],
         "deploys": [{"ts": "2026-11-12T10:08:00Z", "version": "v1.1.0", "sha": "abc", "summary": "currency context"}],
-        "commits": {"v1.1.0": {"diff": "context[\"currency\"]", "sha": "abc"}},
+        "commits": {"v1.1.0": {"diff": 'diff --git a/service/pricing.py b/service/pricing.py\n--- a/service/pricing.py\n+++ b/service/pricing.py\n@@ -1 +1 @@\n+    currency = context["currency"]', "sha": "abc"}},
         "health": {"status": "ok"},
         "deployment-state": {"id": "D1", "sha": "abc"},
     }
@@ -34,7 +34,7 @@ def valid_report():
     return {"summary": "Currency lookup failed after release", "failure_type": "bad_deploy", "culprit": "v1.1.0",
             "confidence": "medium", "timeline": [{"ts": "2026-11-12T10:09:00Z", "description": "First error"}],
             "evidence": [{"tool_call_id": "T1", "quote": "missing currency"},
-                         {"tool_call_id": "T2", "quote": "currency context"}],
+                         {"tool_call_id": "T3", "quote": 'context["currency"]'}],
             "next_steps": ["Roll back and verify"],
             "proposed_actions": [{"kind": "rollback", "target": "v1.0.0", "reason": "Remove the pricing regression"}]}
 
@@ -72,7 +72,7 @@ def test_undeployed_revision_is_not_exposed(evidence):
 
 def test_fabricated_citation_rejected():
     report = Report.model_validate(valid_report())
-    assert verify_evidence(report, {"T1": {"text": "missing currency"}, "T2": {"text": "currency context"}}) == []
+    assert verify_evidence(report, {"T1": {"text": "missing currency"}, "T3": {"text": 'context["currency"]'}}) == []
     assert verify_evidence(report, {"T1": {"text": "something else"}})
 
 
@@ -90,7 +90,7 @@ class ScriptedProvider:
 def test_agent_runs_tools_and_validates_report(evidence, tmp_path):
     provider = ScriptedProvider([
         ("update_plan", {"steps": ["Check errors", "Compare deploy"], "reason": "Collect evidence"}),
-        ("search_logs", {}), ("list_deploys", {}), ("submit_report", valid_report())])
+        ("search_logs", {}), ("list_deploys", {}), ("git_show", {"revision": "v1.1.0"}), ("submit_report", valid_report())])
     directory = investigate(evidence, tmp_path / "run", provider=provider)
     assert json.loads((directory / "run.json").read_text())["status"] == "completed"
     assert json.loads((directory / "report.json").read_text())["culprit"] == "v1.1.0"
@@ -101,7 +101,7 @@ def test_agent_retries_invented_quote(evidence, tmp_path):
     wrong["evidence"][0]["quote"] = "invented log line"
     provider = ScriptedProvider([
         ("update_plan", {"steps": ["Check"], "reason": "Collect"}),
-        ("search_logs", {}), ("list_deploys", {}),
+        ("search_logs", {}), ("list_deploys", {}), ("git_show", {"revision": "v1.1.0"}),
         ("submit_report", wrong), ("submit_report", valid_report())])
     directory = investigate(evidence, tmp_path / "run", provider=provider)
     assert '"kind": "validation_error"' in (directory / "trace.jsonl").read_text()
@@ -113,7 +113,7 @@ def test_inconclusive_report_never_proposes_actions(evidence, tmp_path):
     report.update(failure_type="unknown", confidence="high")
     provider = ScriptedProvider([
         ("update_plan", {"steps": ["Check"], "reason": "Collect"}),
-        ("search_logs", {}), ("list_deploys", {}), ("submit_report", report)])
+        ("search_logs", {}), ("list_deploys", {}), ("git_show", {"revision": "v1.1.0"}), ("submit_report", report)])
     directory = investigate(evidence, tmp_path / "run", provider=provider)
     result = json.loads((directory / "report.json").read_text())
     assert result["confidence"] == "low"
@@ -123,11 +123,11 @@ def test_inconclusive_report_never_proposes_actions(evidence, tmp_path):
 def test_model_selects_evidence_ids_and_app_copies_quotes(evidence, tmp_path):
     submission = valid_report()
     submission["evidence"] = [{"tool_call_id": "T1", "quote_id": "E1"},
-                              {"tool_call_id": "T2", "quote_id": "E3"}]
+                              {"tool_call_id": "T3", "quote_id": "E1"}]
     # IDs are generated from source string values, never from an answer key.
     provider = ScriptedProvider([
         ("update_plan", {"steps": ["Check"], "reason": "Collect"}),
-        ("search_logs", {}), ("list_deploys", {}), ("submit_report", submission)])
+        ("search_logs", {}), ("list_deploys", {}), ("git_show", {"revision": "v1.1.0"}), ("submit_report", submission)])
     directory = investigate(evidence, tmp_path / "run", provider=provider)
     assert json.loads((directory / "run.json").read_text())["status"] == "completed"
     assert all("quote_id" not in c for c in json.loads((directory / "report.json").read_text())["evidence"])
@@ -137,7 +137,7 @@ def test_grader_distinguishes_correct_cause_from_decoy(evidence, tmp_path):
     from eval.grader import grade
     provider = ScriptedProvider([
         ("update_plan", {"steps": ["Check"], "reason": "Collect"}),
-        ("search_logs", {}), ("list_deploys", {}), ("submit_report", valid_report())])
+        ("search_logs", {}), ("list_deploys", {}), ("git_show", {"revision": "v1.1.0"}), ("submit_report", valid_report())])
     directory = investigate(evidence, tmp_path / "run", provider=provider)
     answer = {"failure_type": "bad_deploy", "accepted_culprits": ["v1.1.0"], "decoys": ["v1.1.1"]}
     assert grade(directory, answer)["correct"]

@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 import shlex
+from agent.causality import revision_facts
 from collections import Counter
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -95,7 +96,11 @@ class Tools:
                     for ref in (row["version"], row["sha"])}
         if revision not in commits or revision not in deployed:
             raise ValueError("Unknown revision; use a full SHA or tag returned by list_deploys")
-        return commits[revision]
+        commit = dict(commits[revision])
+        if not commit.get("tag"):
+            commit["tag"] = next(row["version"] for row in self.read("deploys.json") if row["sha"] == commit["sha"])
+        commit["revision"] = revision_facts(commit)
+        return commit
 
     def health_check(self):
         return self.read("health.json")
@@ -124,7 +129,14 @@ class Tools:
         value = getattr(self, name)(**arguments)
         encoded = json.dumps(value, ensure_ascii=False)
         if len(encoded) > 4000:
-            return {"content": encoded[:3600], "truncated": True, "total_characters": len(encoded)}
+            bounded = {"content": encoded[:3000], "truncated": True, "total_characters": len(encoded)}
+            if "revision" in value:
+                facts = dict(value["revision"])
+                facts["service_lines"] = [line[:240] for line in facts["service_lines"][:6]]
+                bounded["revision"] = facts
+            while len(json.dumps(bounded)) > 4000 and bounded["content"]:
+                bounded["content"] = bounded["content"][:-200]
+            return bounded
         return value
 
 

@@ -20,12 +20,15 @@ The incomplete batches cannot support a general accuracy or superiority claim.
 
 Earlier development experiments remain in separate CSVs. They used evolving report protocols and are not pooled into v6.
 
-## Resume after free quota replenishes
+## New protocol and next evaluation
+
+The v6 pilot above is frozen. The offline follow-up adds a named-revision code-proof rule and a stronger fixed collector. It has not been evaluated with fresh model calls. See [offline analysis](offline-review.md).
+
+After quota is available, run a separate experiment:
 
 ```bash
-python -m eval.evaluate --model openai/gpt-oss-120b --runs 1 --experiment v6 --retry-failed
-python -m eval.evaluate --model openai/gpt-oss-20b --scenario bad_deploy --runs 5 --experiment v6 --retry-failed
+python -m eval.evaluate --model openai/gpt-oss-120b --runs 1 --experiment v7
+python -m eval.evaluate --model openai/gpt-oss-20b --scenario bad_deploy --runs 5 --experiment v7
 ```
 
-Failed attempts are archived before retry; completed diagnoses, including wrong ones, are never rerun by this option.
-A cached prefix can resume without repeating every API request. A resumed attempt is not another independent trial.
+`--retry-failed` may resume failed attempts within v7. It archives failed attempts and preserves completed wrong diagnoses. It does not permit mixing historical v6 outputs with the new protocol.

@@ -111,3 +111,9 @@ checks provenance, not whether every quote logically proves every sentence.
 
 Source for provider-specific output controls: [Groq reasoning documentation](https://console.groq.com/docs/reasoning)
 and [structured outputs documentation](https://console.groq.com/docs/structured-outputs).
+
+## Offline follow-up
+
+The historical decoy reports contained real quotes but named a release that did not change service code. The new causal-v1 acceptance rule checks exact revision identity, code changes and a same-revision code citation. The five-report offline audit rejects both decoy reports, retains one fully supported report and flags two historically correct diagnoses that lack the new proof. This is policy validation, not evidence of improved model accuracy.
+
+The fixed collector now reads all returned recent deployed diffs once so it can satisfy the same rule. New model runs use a separate v7 experiment; v6 measurements remain frozen. See [offline analysis](offline-review.md) for the actual report-by-report outcomes.

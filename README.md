@@ -210,9 +210,18 @@ This project differs in being small and local-first, evaluated against decoy sig
 
 ## Current validation and submission notes
 
-- 24 automated tests pass.
+- 36 automated tests pass.
 - Real fault checks cover bad deploy, pool exhaustion and memory leak.
 - Human-approved live recovery: 135 requests, zero HTTP 5xx, zero connection errors, both health probes pass.
 - [Pilot results](docs/evaluation-results.md) include all final-experiment attempts, including wrong diagnoses and quota failures.
 - [Technical blog draft](docs/technical-blog.md) and [viva notes](docs/viva-notes.md) explain the build and its limitations.
 - Replays are selected successful real investigations; they are never presented as fresh runs or benchmark averages.
+
+## Offline follow-up
+
+Known diagnoses must now name an inspected revision and cite its changed service Python code, alongside observed symptoms. The same rule applies to a strengthened fixed collector. These structural checks do not establish semantic causality or improved diagnosis accuracy.
+
+- [Historical failure audit](docs/offline-review.md): five real completed reports, no new model calls.
+- [Presentation notes](docs/presentation-notes.md): ten slides and a seven-minute speaking plan.
+- `python scripts/rehearse.py`: verifies saved real replay evidence and approved recovery without API calls or system changes.
+- Future model runs use `--experiment v7`; v6 remains frozen.

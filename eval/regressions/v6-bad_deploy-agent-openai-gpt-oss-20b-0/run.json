@@ -1,0 +1,22 @@
+{
+  "id": "v6-bad_deploy-agent-openai-gpt-oss-20b-0",
+  "source": "eval/fixtures/bad_deploy",
+  "mode": "agent",
+  "model": "openai/gpt-oss-20b",
+  "seed": 0,
+  "started_at": "2026-11-12T12:36:08.129413Z",
+  "status": "completed",
+  "alert": {
+    "service": "checkout-api",
+    "fired_at": "2026-11-12T12:06:10.020Z",
+    "message": "checkout-api HTTP 5xx rate above 5% over 2 minutes",
+    "observed_rate": 0.1918,
+    "window_seconds": 120
+  },
+  "finished_at": "2026-11-12T12:37:06.875417Z",
+  "llm_calls": 7,
+  "cached_calls": 0,
+  "total_tokens": 13121,
+  "duration_s": 58.75,
+  "historical": true
+}

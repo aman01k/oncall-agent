@@ -1,0 +1,56 @@
+{
+  "summary": "A sudden spike in HTTP 5xx errors was observed on checkout\u2011api at 12:06:10 UTC. Log analysis shows a burst of KeyError exceptions in the /checkout route, all originating from version v1.1.0 deployed minutes earlier. Metrics confirm 75 out of 391 requests (19% error rate) returned 5xx responses. The deployment introduced a new currency context that is missing in some requests, causing the KeyError and the observed outage.",
+  "failure_type": "bad_deploy",
+  "culprit": "v1.1.0",
+  "confidence": "medium",
+  "timeline": [
+    {
+      "ts": "2026-11-12T12:05:40.582Z",
+      "description": "v1.0.0 is the last known good release."
+    },
+    {
+      "ts": "2026-11-12T12:05:41.551Z",
+      "description": "Deploy v1.1.0 (Add currency context to pricing)."
+    },
+    {
+      "ts": "2026-11-12T12:05:42.150Z",
+      "description": "First KeyError /checkout 500 observed."
+    },
+    {
+      "ts": "2026-11-12T12:06:09.881Z",
+      "description": "Peak of 5xx errors; alert fires."
+    },
+    {
+      "ts": "2026-11-12T12:06:10.020Z",
+      "description": "Health check reports service OK, masking underlying exception."
+    }
+  ],
+  "evidence": [
+    {
+      "tool_call_id": "T1",
+      "quote": "KeyError /checkout 500"
+    },
+    {
+      "tool_call_id": "T2",
+      "quote": "Observed 75 HTTP 5xx responses among 391 requests. RSS ranged from 0.3 to 75.8 MiB."
+    }
+  ],
+  "next_steps": [
+    "Rollback checkout\u2011api to version v1.0.0.",
+    "Add validation for missing currency field.",
+    "Monitor error rate after rollback.",
+    "Update release notes to reflect the regression."
+  ],
+  "proposed_actions": [
+    {
+      "kind": "rollback",
+      "target": "v1.0.0",
+      "reason": "KeyError caused by missing currency context in v1.1.0 deployment."
+    },
+    {
+      "kind": "restart",
+      "target": null,
+      "reason": "Ensure all instances pick up the rolled\u2011back code cleanly."
+    }
+  ]
+}

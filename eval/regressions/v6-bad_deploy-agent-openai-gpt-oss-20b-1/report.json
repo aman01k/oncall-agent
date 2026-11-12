@@ -1,0 +1,45 @@
+{
+  "summary": "The checkout\u2011api service experienced a sudden spike in HTTP 5xx responses, reaching 19% over a 2\u2011minute window. Analysis of query metrics shows 75 5xx errors out of 391 requests, with the spike concentrated in the last 20 seconds. The recent deployment of v1.1.1 introduced a faulty pricing module that references an undefined currency field, causing runtime errors. The failure is classified as a bad_deploy.",
+  "failure_type": "bad_deploy",
+  "culprit": "v1.1.1",
+  "confidence": "medium",
+  "timeline": [
+    {
+      "ts": "2026-11-12T12:05:44.667Z",
+      "description": "Deployment of v1.1.1"
+    },
+    {
+      "ts": "2026-11-12T12:05:44.667Z",
+      "description": "Checkout\u2011api begins serving requests"
+    },
+    {
+      "ts": "2026-11-12T12:06:00Z",
+      "description": "HTTP 5xx rate exceeds 5% threshold"
+    },
+    {
+      "ts": "2026-11-12T12:06:10.020Z",
+      "description": "Alert fired"
+    }
+  ],
+  "evidence": [
+    {
+      "tool_call_id": "T2",
+      "quote": "Observed 75 HTTP 5xx responses among 391 requests. RSS ranged from 0.3 to 75.8 MiB."
+    },
+    {
+      "tool_call_id": "T3",
+      "quote": "v1.1.1"
+    }
+  ],
+  "next_steps": [
+    "Investigate the pricing module for missing currency handling",
+    "Verify that rollback restores normal operation"
+  ],
+  "proposed_actions": [
+    {
+      "kind": "rollback",
+      "target": "v1.0.0",
+      "reason": "Revert to stable release to eliminate faulty pricing logic"
+    }
+  ]
+}

@@ -52,3 +52,5 @@ failures, rather than claiming universal accuracy.
 real monitoring integrations, secret redaction, stronger action policies,
 larger independent evaluations and a better-tested incident corpus. The current
 project is a controlled local demonstrator.
+
+**What changed after the failed pilot?** The new guard connects the named culprit to an inspected service-code diff and a cited changed line from that revision. It rejects the two historical decoy reports offline, but also rejects correct reports without enough proof. Fresh v7 model accuracy remains unmeasured. The baseline now collects all returned recent diffs to meet the same rule fairly.

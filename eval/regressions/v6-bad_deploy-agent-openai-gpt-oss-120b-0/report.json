@@ -1,0 +1,43 @@
+{
+  "summary": "A recent deployment (v1.1.0) introduced a KeyError in the checkout API due to missing 'currency' in the request context, causing a spike in 5xx errors.",
+  "failure_type": "bad_deploy",
+  "culprit": "v1.1.0 deployment of checkout-api",
+  "confidence": "medium",
+  "timeline": [
+    {
+      "ts": "2026-11-12T12:05:42.150Z",
+      "description": "First 500 error logged with KeyError for missing 'currency' after v1.1.0 was released."
+    },
+    {
+      "ts": "2026-11-12T12:06:10.020Z",
+      "description": "Alert fired: checkout-api HTTP 5xx rate above 5% over 2 minutes."
+    }
+  ],
+  "evidence": [
+    {
+      "tool_call_id": "T1",
+      "quote": "KeyError /checkout 500"
+    },
+    {
+      "tool_call_id": "T2",
+      "quote": "+        currency = context[\"currency\"]"
+    }
+  ],
+  "next_steps": [
+    "Rollback checkout-api to version v1.0.0",
+    "Add unit test for currency context handling",
+    "Monitor error rate after rollback"
+  ],
+  "proposed_actions": [
+    {
+      "kind": "rollback",
+      "target": "v1.0.0",
+      "reason": "KeyError caused by missing currency field in new pricing logic"
+    },
+    {
+      "kind": "restart",
+      "target": null,
+      "reason": "Ensure service restarts cleanly after rollback"
+    }
+  ]
+}
