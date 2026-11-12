@@ -84,3 +84,21 @@ The project uses the Python 3.14 already installed on the development Mac. A cle
 - Log IDs include a process prefix to remain unique across restarts. Process state includes creation time to reject stale/reused PIDs.
 
 **Reason:** all three faults need real, observable evidence and reliable recovery before the read-only tools and agent can be built. The small memory cap bounds local resource use. A restart delays a leak; rollback removes its code. See [local-lab.md](local-lab.md).
+
+## 2026-11-12: Evidence references and report-format recovery
+
+The model selects tool/excerpt IDs; application code copies source text into the final report and verifies it. Older results retain their citation menus when compacted. If native report function calls fail, strict JSON output writes the same model report over the same evidence. Unknown diagnoses have low confidence and no actions. A known diagnosis needs an observed log or metric citation.
+
+**Reason:** actual integration runs exposed malformed function arguments and reconstructed quotes. A formatting failure must not silently turn into fabricated evidence. Source IDs avoid that error without supplying the correct diagnosis.
+
+## 2026-11-12: Live approval and recovery verified
+
+The live report identified the currency-context release. aman01k explicitly approved rollback in chat. The executor recorded that decision, rolled the sandbox back to v1.0.0, then observed 135 requests with zero HTTP 5xx and zero network errors. Both health probes passed.
+
+**Reason:** the approval gate should be exercised beyond unit tests, while preserving the human decision in the trace. This short observation is not a production recovery claim.
+
+## 2026-11-12: Preserve quota-limited pilot outcomes
+
+Both free Groq models reached their daily quotas during development/evaluation. The main model reported a 200,000-token daily limit. v6 pilot CSVs retain wrong diagnoses and quota failures separately; no paid fallback is used. Failed attempts can be archived and resumed from cached prefixes after quota replenishes. Completed wrong diagnoses are never retried by --retry-failed.
+
+**Reason:** hiding failed runs or calling cached resumes independent trials would make the evaluation misleading. The fixed baseline collects six predefined results, including a runbook search and the latest deploy diff; it does not adaptively read additional guides or diffs. Claims are limited to that collector. Provider-specific output settings follow [Groq reasoning](https://console.groq.com/docs/reasoning) and [structured output](https://console.groq.com/docs/structured-outputs) documentation.
