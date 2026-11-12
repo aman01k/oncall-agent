@@ -1,0 +1,7 @@
+{
+  "service": "checkout-api",
+  "fired_at": "2026-11-12T12:06:46.132Z",
+  "message": "checkout-api HTTP 5xx rate above 5% over 2 minutes",
+  "observed_rate": 0.8261,
+  "window_seconds": 120
+}

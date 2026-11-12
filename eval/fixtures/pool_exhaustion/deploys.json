@@ -1,0 +1,23 @@
+[
+  {
+    "id": "D1",
+    "ts": "2026-11-12T12:06:12.465Z",
+    "version": "v1.0.0",
+    "sha": "d2f99b83c6d1cd978ffb7a7274635bce2c5e4556",
+    "summary": "Initial checkout implementation"
+  },
+  {
+    "id": "D2",
+    "ts": "2026-11-12T12:06:13.743Z",
+    "version": "v1.2.0",
+    "sha": "f2eaf7fc0a00ba0661dcfbcadaa557dcd41355f7",
+    "summary": "Reduce database connections and retain history query context"
+  },
+  {
+    "id": "D3",
+    "ts": "2026-11-12T12:06:20.801Z",
+    "version": "v1.2.1",
+    "sha": "5147a57418e4d75414f03306e8b44b39e04bab94",
+    "summary": "Update release description"
+  }
+]

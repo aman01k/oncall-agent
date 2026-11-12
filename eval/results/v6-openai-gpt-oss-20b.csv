@@ -1,0 +1,11 @@
+scenario,mode,seed,model,status,correct,evidence_valid,decoy_blamed,failure_type_correct,culprit_correct,confidence,llm_calls,cached_calls,total_tokens,duration_s,run
+bad_deploy,agent,0,openai/gpt-oss-20b,completed,False,True,True,True,False,medium,7,0,13121,58.75,runs/eval/v6-bad_deploy-agent-openai-gpt-oss-20b-0
+bad_deploy,agent,1,openai/gpt-oss-20b,completed,False,True,True,True,False,medium,6,0,10272,86.05,runs/eval/v6-bad_deploy-agent-openai-gpt-oss-20b-1
+bad_deploy,agent,2,openai/gpt-oss-20b,completed,True,True,False,True,True,medium,6,0,10941,72.92,runs/eval/v6-bad_deploy-agent-openai-gpt-oss-20b-2
+bad_deploy,agent,3,openai/gpt-oss-20b,failed,False,False,False,False,False,,7,0,13312,149.64,runs/eval/v6-bad_deploy-agent-openai-gpt-oss-20b-3
+bad_deploy,agent,4,openai/gpt-oss-20b,failed,False,False,False,False,False,,0,0,0,0.16,runs/eval/v6-bad_deploy-agent-openai-gpt-oss-20b-4
+bad_deploy,baseline,0,openai/gpt-oss-20b,failed,False,True,False,False,False,low,0,0,0,0.12,runs/eval/v6-bad_deploy-baseline-openai-gpt-oss-20b-0
+bad_deploy,baseline,1,openai/gpt-oss-20b,failed,False,True,False,False,False,low,0,0,0,0.12,runs/eval/v6-bad_deploy-baseline-openai-gpt-oss-20b-1
+bad_deploy,baseline,2,openai/gpt-oss-20b,failed,False,True,False,False,False,low,0,0,0,0.12,runs/eval/v6-bad_deploy-baseline-openai-gpt-oss-20b-2
+bad_deploy,baseline,3,openai/gpt-oss-20b,failed,False,True,False,False,False,low,0,0,0,0.18,runs/eval/v6-bad_deploy-baseline-openai-gpt-oss-20b-3
+bad_deploy,baseline,4,openai/gpt-oss-20b,failed,False,True,False,False,False,low,0,0,0,0.12,runs/eval/v6-bad_deploy-baseline-openai-gpt-oss-20b-4

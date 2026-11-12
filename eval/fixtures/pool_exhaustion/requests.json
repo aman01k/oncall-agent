@@ -1,0 +1,1658 @@
+[
+  {
+    "ts": "2026-11-12T12:06:12.665Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 13.56
+  },
+  {
+    "ts": "2026-11-12T12:06:12.721Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 1.67
+  },
+  {
+    "ts": "2026-11-12T12:06:16.062Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.97
+  },
+  {
+    "ts": "2026-11-12T12:06:16.127Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2005.94
+  },
+  {
+    "ts": "2026-11-12T12:06:16.199Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.68
+  },
+  {
+    "ts": "2026-11-12T12:06:16.267Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.85
+  },
+  {
+    "ts": "2026-11-12T12:06:16.336Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.46
+  },
+  {
+    "ts": "2026-11-12T12:06:16.404Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.8
+  },
+  {
+    "ts": "2026-11-12T12:06:16.474Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.36
+  },
+  {
+    "ts": "2026-11-12T12:06:16.538Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.58
+  },
+  {
+    "ts": "2026-11-12T12:06:16.605Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2006.39
+  },
+  {
+    "ts": "2026-11-12T12:06:16.677Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.17
+  },
+  {
+    "ts": "2026-11-12T12:06:16.747Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2013.6
+  },
+  {
+    "ts": "2026-11-12T12:06:16.812Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.66
+  },
+  {
+    "ts": "2026-11-12T12:06:16.878Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.55
+  },
+  {
+    "ts": "2026-11-12T12:06:16.941Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 3022.95
+  },
+  {
+    "ts": "2026-11-12T12:06:16.942Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 2004.43
+  },
+  {
+    "ts": "2026-11-12T12:06:16.997Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 3011.0
+  },
+  {
+    "ts": "2026-11-12T12:06:16.998Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1923.18
+  },
+  {
+    "ts": "2026-11-12T12:06:16.999Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1856.23
+  },
+  {
+    "ts": "2026-11-12T12:06:17.286Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.2
+  },
+  {
+    "ts": "2026-11-12T12:06:17.355Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.59
+  },
+  {
+    "ts": "2026-11-12T12:06:17.419Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2005.43
+  },
+  {
+    "ts": "2026-11-12T12:06:17.490Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.85
+  },
+  {
+    "ts": "2026-11-12T12:06:19.948Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4941.01
+  },
+  {
+    "ts": "2026-11-12T12:06:20.004Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4793.57
+  },
+  {
+    "ts": "2026-11-12T12:06:23.130Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.44
+  },
+  {
+    "ts": "2026-11-12T12:06:23.198Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.76
+  },
+  {
+    "ts": "2026-11-12T12:06:23.265Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.73
+  },
+  {
+    "ts": "2026-11-12T12:06:23.333Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.73
+  },
+  {
+    "ts": "2026-11-12T12:06:23.402Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.76
+  },
+  {
+    "ts": "2026-11-12T12:06:23.471Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2013.25
+  },
+  {
+    "ts": "2026-11-12T12:06:23.537Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.62
+  },
+  {
+    "ts": "2026-11-12T12:06:23.604Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.64
+  },
+  {
+    "ts": "2026-11-12T12:06:23.672Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.88
+  },
+  {
+    "ts": "2026-11-12T12:06:23.739Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.41
+  },
+  {
+    "ts": "2026-11-12T12:06:23.804Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.34
+  },
+  {
+    "ts": "2026-11-12T12:06:23.874Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.13
+  },
+  {
+    "ts": "2026-11-12T12:06:23.940Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.37
+  },
+  {
+    "ts": "2026-11-12T12:06:24.007Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 3022.83
+  },
+  {
+    "ts": "2026-11-12T12:06:24.007Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 2007.67
+  },
+  {
+    "ts": "2026-11-12T12:06:24.062Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 3010.83
+  },
+  {
+    "ts": "2026-11-12T12:06:24.064Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1928.68
+  },
+  {
+    "ts": "2026-11-12T12:06:24.064Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1861.29
+  },
+  {
+    "ts": "2026-11-12T12:06:24.347Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.42
+  },
+  {
+    "ts": "2026-11-12T12:06:24.415Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.92
+  },
+  {
+    "ts": "2026-11-12T12:06:24.486Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.86
+  },
+  {
+    "ts": "2026-11-12T12:06:24.551Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.98
+  },
+  {
+    "ts": "2026-11-12T12:06:25.161Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.33
+  },
+  {
+    "ts": "2026-11-12T12:06:25.229Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.14
+  },
+  {
+    "ts": "2026-11-12T12:06:25.296Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.7
+  },
+  {
+    "ts": "2026-11-12T12:06:25.361Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.13
+  },
+  {
+    "ts": "2026-11-12T12:06:25.431Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.44
+  },
+  {
+    "ts": "2026-11-12T12:06:25.497Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.9
+  },
+  {
+    "ts": "2026-11-12T12:06:25.564Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.66
+  },
+  {
+    "ts": "2026-11-12T12:06:25.633Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.78
+  },
+  {
+    "ts": "2026-11-12T12:06:25.702Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.23
+  },
+  {
+    "ts": "2026-11-12T12:06:25.770Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.81
+  },
+  {
+    "ts": "2026-11-12T12:06:25.833Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.11
+  },
+  {
+    "ts": "2026-11-12T12:06:25.906Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.25
+  },
+  {
+    "ts": "2026-11-12T12:06:25.971Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.07
+  },
+  {
+    "ts": "2026-11-12T12:06:26.044Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.3
+  },
+  {
+    "ts": "2026-11-12T12:06:26.111Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.97
+  },
+  {
+    "ts": "2026-11-12T12:06:26.178Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.98
+  },
+  {
+    "ts": "2026-11-12T12:06:26.248Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.52
+  },
+  {
+    "ts": "2026-11-12T12:06:26.313Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.15
+  },
+  {
+    "ts": "2026-11-12T12:06:26.380Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.76
+  },
+  {
+    "ts": "2026-11-12T12:06:26.452Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.42
+  },
+  {
+    "ts": "2026-11-12T12:06:26.518Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.41
+  },
+  {
+    "ts": "2026-11-12T12:06:26.585Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.32
+  },
+  {
+    "ts": "2026-11-12T12:06:27.014Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4945.81
+  },
+  {
+    "ts": "2026-11-12T12:06:27.014Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1825.46
+  },
+  {
+    "ts": "2026-11-12T12:06:27.015Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1758.72
+  },
+  {
+    "ts": "2026-11-12T12:06:27.016Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1691.73
+  },
+  {
+    "ts": "2026-11-12T12:06:27.017Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1625.45
+  },
+  {
+    "ts": "2026-11-12T12:06:27.071Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4800.48
+  },
+  {
+    "ts": "2026-11-12T12:06:27.603Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.11
+  },
+  {
+    "ts": "2026-11-12T12:06:27.671Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.74
+  },
+  {
+    "ts": "2026-11-12T12:06:27.741Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.51
+  },
+  {
+    "ts": "2026-11-12T12:06:27.809Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.38
+  },
+  {
+    "ts": "2026-11-12T12:06:27.876Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.64
+  },
+  {
+    "ts": "2026-11-12T12:06:27.946Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.77
+  },
+  {
+    "ts": "2026-11-12T12:06:28.014Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2012.44
+  },
+  {
+    "ts": "2026-11-12T12:06:28.083Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.06
+  },
+  {
+    "ts": "2026-11-12T12:06:28.151Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.73
+  },
+  {
+    "ts": "2026-11-12T12:06:28.222Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2012.84
+  },
+  {
+    "ts": "2026-11-12T12:06:28.287Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.45
+  },
+  {
+    "ts": "2026-11-12T12:06:28.356Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.95
+  },
+  {
+    "ts": "2026-11-12T12:06:28.426Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2012.97
+  },
+  {
+    "ts": "2026-11-12T12:06:28.488Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.78
+  },
+  {
+    "ts": "2026-11-12T12:06:28.556Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.08
+  },
+  {
+    "ts": "2026-11-12T12:06:28.621Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2005.0
+  },
+  {
+    "ts": "2026-11-12T12:06:29.032Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.38
+  },
+  {
+    "ts": "2026-11-12T12:06:29.104Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.33
+  },
+  {
+    "ts": "2026-11-12T12:06:29.169Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.67
+  },
+  {
+    "ts": "2026-11-12T12:06:29.246Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2016.3
+  },
+  {
+    "ts": "2026-11-12T12:06:29.309Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.17
+  },
+  {
+    "ts": "2026-11-12T12:06:29.372Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.81
+  },
+  {
+    "ts": "2026-11-12T12:06:29.647Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.31
+  },
+  {
+    "ts": "2026-11-12T12:06:29.712Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.26
+  },
+  {
+    "ts": "2026-11-12T12:06:29.779Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.46
+  },
+  {
+    "ts": "2026-11-12T12:06:29.856Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2016.22
+  },
+  {
+    "ts": "2026-11-12T12:06:29.920Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.7
+  },
+  {
+    "ts": "2026-11-12T12:06:29.989Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2013.26
+  },
+  {
+    "ts": "2026-11-12T12:06:30.021Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4561.19
+  },
+  {
+    "ts": "2026-11-12T12:06:30.022Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1976.23
+  },
+  {
+    "ts": "2026-11-12T12:06:30.076Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4549.59
+  },
+  {
+    "ts": "2026-11-12T12:06:30.077Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1891.91
+  },
+  {
+    "ts": "2026-11-12T12:06:30.331Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.13
+  },
+  {
+    "ts": "2026-11-12T12:06:30.397Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.13
+  },
+  {
+    "ts": "2026-11-12T12:06:30.467Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.53
+  },
+  {
+    "ts": "2026-11-12T12:06:30.536Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.04
+  },
+  {
+    "ts": "2026-11-12T12:06:30.602Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.11
+  },
+  {
+    "ts": "2026-11-12T12:06:30.668Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.56
+  },
+  {
+    "ts": "2026-11-12T12:06:31.077Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.46
+  },
+  {
+    "ts": "2026-11-12T12:06:31.143Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.77
+  },
+  {
+    "ts": "2026-11-12T12:06:31.213Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.41
+  },
+  {
+    "ts": "2026-11-12T12:06:31.283Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.64
+  },
+  {
+    "ts": "2026-11-12T12:06:31.351Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.86
+  },
+  {
+    "ts": "2026-11-12T12:06:31.418Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.87
+  },
+  {
+    "ts": "2026-11-12T12:06:31.690Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.0
+  },
+  {
+    "ts": "2026-11-12T12:06:31.754Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.8
+  },
+  {
+    "ts": "2026-11-12T12:06:31.827Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.14
+  },
+  {
+    "ts": "2026-11-12T12:06:31.889Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.08
+  },
+  {
+    "ts": "2026-11-12T12:06:31.959Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.83
+  },
+  {
+    "ts": "2026-11-12T12:06:32.027Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.71
+  },
+  {
+    "ts": "2026-11-12T12:06:32.097Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.82
+  },
+  {
+    "ts": "2026-11-12T12:06:32.167Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.45
+  },
+  {
+    "ts": "2026-11-12T12:06:32.233Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2006.55
+  },
+  {
+    "ts": "2026-11-12T12:06:32.301Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.36
+  },
+  {
+    "ts": "2026-11-12T12:06:32.371Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.78
+  },
+  {
+    "ts": "2026-11-12T12:06:32.438Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.84
+  },
+  {
+    "ts": "2026-11-12T12:06:32.504Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2006.57
+  },
+  {
+    "ts": "2026-11-12T12:06:32.572Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.27
+  },
+  {
+    "ts": "2026-11-12T12:06:32.643Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.79
+  },
+  {
+    "ts": "2026-11-12T12:06:32.710Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.2
+  },
+  {
+    "ts": "2026-11-12T12:06:33.030Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4912.66
+  },
+  {
+    "ts": "2026-11-12T12:06:33.084Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4831.02
+  },
+  {
+    "ts": "2026-11-12T12:06:33.084Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1905.23
+  },
+  {
+    "ts": "2026-11-12T12:06:33.324Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.88
+  },
+  {
+    "ts": "2026-11-12T12:06:33.394Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.24
+  },
+  {
+    "ts": "2026-11-12T12:06:33.460Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.27
+  },
+  {
+    "ts": "2026-11-12T12:06:33.732Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.23
+  },
+  {
+    "ts": "2026-11-12T12:06:33.795Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2006.24
+  },
+  {
+    "ts": "2026-11-12T12:06:33.864Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.0
+  },
+  {
+    "ts": "2026-11-12T12:06:33.930Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2005.55
+  },
+  {
+    "ts": "2026-11-12T12:06:34.005Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2012.8
+  },
+  {
+    "ts": "2026-11-12T12:06:34.072Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.72
+  },
+  {
+    "ts": "2026-11-12T12:06:34.140Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.53
+  },
+  {
+    "ts": "2026-11-12T12:06:34.212Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.76
+  },
+  {
+    "ts": "2026-11-12T12:06:34.275Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.91
+  },
+  {
+    "ts": "2026-11-12T12:06:34.347Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.27
+  },
+  {
+    "ts": "2026-11-12T12:06:34.416Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.47
+  },
+  {
+    "ts": "2026-11-12T12:06:34.480Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.49
+  },
+  {
+    "ts": "2026-11-12T12:06:34.548Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.33
+  },
+  {
+    "ts": "2026-11-12T12:06:34.621Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2013.42
+  },
+  {
+    "ts": "2026-11-12T12:06:34.686Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.28
+  },
+  {
+    "ts": "2026-11-12T12:06:34.755Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.49
+  },
+  {
+    "ts": "2026-11-12T12:06:35.093Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2012.26
+  },
+  {
+    "ts": "2026-11-12T12:06:35.159Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.95
+  },
+  {
+    "ts": "2026-11-12T12:06:35.230Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.76
+  },
+  {
+    "ts": "2026-11-12T12:06:35.365Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.82
+  },
+  {
+    "ts": "2026-11-12T12:06:35.432Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.41
+  },
+  {
+    "ts": "2026-11-12T12:06:35.499Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2005.94
+  },
+  {
+    "ts": "2026-11-12T12:06:35.773Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.67
+  },
+  {
+    "ts": "2026-11-12T12:06:35.842Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.18
+  },
+  {
+    "ts": "2026-11-12T12:06:35.912Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.83
+  },
+  {
+    "ts": "2026-11-12T12:06:35.978Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.5
+  },
+  {
+    "ts": "2026-11-12T12:06:36.030Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4922.79
+  },
+  {
+    "ts": "2026-11-12T12:06:36.031Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1996.59
+  },
+  {
+    "ts": "2026-11-12T12:06:36.032Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1930.34
+  },
+  {
+    "ts": "2026-11-12T12:06:36.090Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4843.93
+  },
+  {
+    "ts": "2026-11-12T12:06:36.318Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.67
+  },
+  {
+    "ts": "2026-11-12T12:06:36.387Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.11
+  },
+  {
+    "ts": "2026-11-12T12:06:36.452Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.72
+  },
+  {
+    "ts": "2026-11-12T12:06:36.528Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2015.74
+  },
+  {
+    "ts": "2026-11-12T12:06:36.588Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.58
+  },
+  {
+    "ts": "2026-11-12T12:06:36.654Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2005.93
+  },
+  {
+    "ts": "2026-11-12T12:06:36.725Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.17
+  },
+  {
+    "ts": "2026-11-12T12:06:36.792Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.83
+  },
+  {
+    "ts": "2026-11-12T12:06:37.130Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.43
+  },
+  {
+    "ts": "2026-11-12T12:06:37.200Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.78
+  },
+  {
+    "ts": "2026-11-12T12:06:37.274Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.83
+  },
+  {
+    "ts": "2026-11-12T12:06:37.412Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.95
+  },
+  {
+    "ts": "2026-11-12T12:06:37.473Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.49
+  },
+  {
+    "ts": "2026-11-12T12:06:37.542Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.05
+  },
+  {
+    "ts": "2026-11-12T12:06:37.813Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.51
+  },
+  {
+    "ts": "2026-11-12T12:06:37.881Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.37
+  },
+  {
+    "ts": "2026-11-12T12:06:37.947Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.85
+  },
+  {
+    "ts": "2026-11-12T12:06:38.018Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.39
+  },
+  {
+    "ts": "2026-11-12T12:06:38.088Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.96
+  },
+  {
+    "ts": "2026-11-12T12:06:38.154Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.41
+  },
+  {
+    "ts": "2026-11-12T12:06:38.220Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.54
+  },
+  {
+    "ts": "2026-11-12T12:06:38.296Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2013.04
+  },
+  {
+    "ts": "2026-11-12T12:06:38.358Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.45
+  },
+  {
+    "ts": "2026-11-12T12:06:38.425Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.19
+  },
+  {
+    "ts": "2026-11-12T12:06:38.496Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.71
+  },
+  {
+    "ts": "2026-11-12T12:06:38.562Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.99
+  },
+  {
+    "ts": "2026-11-12T12:06:38.629Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.33
+  },
+  {
+    "ts": "2026-11-12T12:06:38.700Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.42
+  },
+  {
+    "ts": "2026-11-12T12:06:38.768Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.93
+  },
+  {
+    "ts": "2026-11-12T12:06:38.834Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.39
+  },
+  {
+    "ts": "2026-11-12T12:06:39.038Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4868.51
+  },
+  {
+    "ts": "2026-11-12T12:06:39.097Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4855.59
+  },
+  {
+    "ts": "2026-11-12T12:06:39.316Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.21
+  },
+  {
+    "ts": "2026-11-12T12:06:39.450Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.74
+  },
+  {
+    "ts": "2026-11-12T12:06:39.518Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.58
+  },
+  {
+    "ts": "2026-11-12T12:06:39.586Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.06
+  },
+  {
+    "ts": "2026-11-12T12:06:39.856Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.47
+  },
+  {
+    "ts": "2026-11-12T12:06:39.925Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.98
+  },
+  {
+    "ts": "2026-11-12T12:06:39.993Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.87
+  },
+  {
+    "ts": "2026-11-12T12:06:40.060Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.58
+  },
+  {
+    "ts": "2026-11-12T12:06:40.128Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.36
+  },
+  {
+    "ts": "2026-11-12T12:06:40.197Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.49
+  },
+  {
+    "ts": "2026-11-12T12:06:40.265Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2011.0
+  },
+  {
+    "ts": "2026-11-12T12:06:40.332Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2006.23
+  },
+  {
+    "ts": "2026-11-12T12:06:40.404Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.33
+  },
+  {
+    "ts": "2026-11-12T12:06:40.470Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.77
+  },
+  {
+    "ts": "2026-11-12T12:06:40.538Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.26
+  },
+  {
+    "ts": "2026-11-12T12:06:40.613Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2017.22
+  },
+  {
+    "ts": "2026-11-12T12:06:40.673Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.72
+  },
+  {
+    "ts": "2026-11-12T12:06:40.739Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2007.42
+  },
+  {
+    "ts": "2026-11-12T12:06:40.806Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2006.36
+  },
+  {
+    "ts": "2026-11-12T12:06:40.876Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.58
+  },
+  {
+    "ts": "2026-11-12T12:06:41.081Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.0
+  },
+  {
+    "ts": "2026-11-12T12:06:41.147Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.97
+  },
+  {
+    "ts": "2026-11-12T12:06:41.354Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.38
+  },
+  {
+    "ts": "2026-11-12T12:06:41.489Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2007.4
+  },
+  {
+    "ts": "2026-11-12T12:06:41.559Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.84
+  },
+  {
+    "ts": "2026-11-12T12:06:41.622Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2005.25
+  },
+  {
+    "ts": "2026-11-12T12:06:41.897Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.75
+  },
+  {
+    "ts": "2026-11-12T12:06:41.966Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.05
+  },
+  {
+    "ts": "2026-11-12T12:06:42.037Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.93
+  },
+  {
+    "ts": "2026-11-12T12:06:42.038Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4873.82
+  },
+  {
+    "ts": "2026-11-12T12:06:42.040Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1947.48
+  },
+  {
+    "ts": "2026-11-12T12:06:42.041Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1880.45
+  },
+  {
+    "ts": "2026-11-12T12:06:42.041Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1813.72
+  },
+  {
+    "ts": "2026-11-12T12:06:42.042Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1746.76
+  },
+  {
+    "ts": "2026-11-12T12:06:42.042Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1677.09
+  },
+  {
+    "ts": "2026-11-12T12:06:42.102Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4869.63
+  },
+  {
+    "ts": "2026-11-12T12:06:42.579Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.32
+  },
+  {
+    "ts": "2026-11-12T12:06:42.646Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.13
+  },
+  {
+    "ts": "2026-11-12T12:06:42.713Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.43
+  },
+  {
+    "ts": "2026-11-12T12:06:42.783Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.23
+  },
+  {
+    "ts": "2026-11-12T12:06:42.850Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.23
+  },
+  {
+    "ts": "2026-11-12T12:06:42.919Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.38
+  },
+  {
+    "ts": "2026-11-12T12:06:43.122Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2011.98
+  },
+  {
+    "ts": "2026-11-12T12:06:43.188Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.94
+  },
+  {
+    "ts": "2026-11-12T12:06:43.394Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.74
+  },
+  {
+    "ts": "2026-11-12T12:06:43.530Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.97
+  },
+  {
+    "ts": "2026-11-12T12:06:43.597Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2008.91
+  },
+  {
+    "ts": "2026-11-12T12:06:43.665Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.3
+  },
+  {
+    "ts": "2026-11-12T12:06:43.934Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.46
+  },
+  {
+    "ts": "2026-11-12T12:06:44.004Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.31
+  },
+  {
+    "ts": "2026-11-12T12:06:44.069Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.8
+  },
+  {
+    "ts": "2026-11-12T12:06:44.138Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.39
+  },
+  {
+    "ts": "2026-11-12T12:06:44.202Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.64
+  },
+  {
+    "ts": "2026-11-12T12:06:44.273Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.32
+  },
+  {
+    "ts": "2026-11-12T12:06:44.343Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2012.02
+  },
+  {
+    "ts": "2026-11-12T12:06:44.409Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2006.07
+  },
+  {
+    "ts": "2026-11-12T12:06:44.479Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.84
+  },
+  {
+    "ts": "2026-11-12T12:06:44.547Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2009.06
+  },
+  {
+    "ts": "2026-11-12T12:06:44.616Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2009.53
+  },
+  {
+    "ts": "2026-11-12T12:06:44.680Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2006.91
+  },
+  {
+    "ts": "2026-11-12T12:06:44.749Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2008.27
+  },
+  {
+    "ts": "2026-11-12T12:06:44.822Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2013.0
+  },
+  {
+    "ts": "2026-11-12T12:06:44.888Z",
+    "route": "/checkout",
+    "status": 500,
+    "latency_ms": 2010.99
+  },
+  {
+    "ts": "2026-11-12T12:06:44.955Z",
+    "route": "/orders/history",
+    "status": 500,
+    "latency_ms": 2010.91
+  },
+  {
+    "ts": "2026-11-12T12:06:45.049Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4616.59
+  },
+  {
+    "ts": "2026-11-12T12:06:45.051Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1903.13
+  },
+  {
+    "ts": "2026-11-12T12:06:45.052Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1836.69
+  },
+  {
+    "ts": "2026-11-12T12:06:45.053Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1629.99
+  },
+  {
+    "ts": "2026-11-12T12:06:45.053Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1494.45
+  },
+  {
+    "ts": "2026-11-12T12:06:45.054Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1426.78
+  },
+  {
+    "ts": "2026-11-12T12:06:45.106Z",
+    "route": "/orders/history",
+    "status": 200,
+    "latency_ms": 4604.99
+  },
+  {
+    "ts": "2026-11-12T12:06:45.106Z",
+    "route": "/checkout",
+    "status": 200,
+    "latency_ms": 1140.95
+  }
+]

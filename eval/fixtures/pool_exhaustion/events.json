@@ -1,0 +1,32 @@
+[
+  {
+    "ts": "2026-11-12T12:06:12.067Z",
+    "kind": "worker_start",
+    "detail": "{\"pid\": 19741, \"version\": \"v1.0.0\"}"
+  },
+  {
+    "ts": "2026-11-12T12:06:12.551Z",
+    "kind": "deploy",
+    "detail": "{\"version\": \"v1.0.0\", \"sha\": \"d2f99b83c6d1cd978ffb7a7274635bce2c5e4556\"}"
+  },
+  {
+    "ts": "2026-11-12T12:06:13.442Z",
+    "kind": "worker_start",
+    "detail": "{\"pid\": 19759, \"version\": \"v1.2.0\"}"
+  },
+  {
+    "ts": "2026-11-12T12:06:13.815Z",
+    "kind": "deploy",
+    "detail": "{\"version\": \"v1.2.0\", \"sha\": \"f2eaf7fc0a00ba0661dcfbcadaa557dcd41355f7\"}"
+  },
+  {
+    "ts": "2026-11-12T12:06:20.511Z",
+    "kind": "worker_start",
+    "detail": "{\"pid\": 19776, \"version\": \"v1.2.1\"}"
+  },
+  {
+    "ts": "2026-11-12T12:06:20.874Z",
+    "kind": "deploy",
+    "detail": "{\"version\": \"v1.2.1\", \"sha\": \"5147a57418e4d75414f03306e8b44b39e04bab94\"}"
+  }
+]

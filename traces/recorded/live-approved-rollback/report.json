@@ -1,0 +1,48 @@
+{
+  "summary": "checkout-api experienced a spike in HTTP 5xx responses (~16% over 2 minutes) shortly after deploying version v1.1.0 which introduced a currency context bug causing KeyError exceptions.",
+  "failure_type": "bad_deploy",
+  "culprit": "v1.1.0 (Add currency context to pricing)",
+  "confidence": "medium",
+  "timeline": [
+    {
+      "ts": "2026-11-12T12:26:41.671Z",
+      "description": "Deploy v1.1.0 (Add currency context to pricing) was released."
+    },
+    {
+      "ts": "2026-11-12T12:30:20Z",
+      "description": "HTTP 5xx rate began rising, reaching 23 errors in the first 10\u2011second bucket."
+    },
+    {
+      "ts": "2026-11-12T12:32:19.601Z",
+      "description": "Alert fired: checkout\u2011api HTTP 5xx rate above 5% (observed 16.23%)."
+    }
+  ],
+  "evidence": [
+    {
+      "tool_call_id": "T2",
+      "quote": "Observed 859 HTTP 5xx responses among 8795 requests. RSS ranged from 0.0 to 76.5 MiB."
+    },
+    {
+      "tool_call_id": "T4",
+      "quote": "+        currency = context[\"currency\"]"
+    }
+  ],
+  "next_steps": [
+    "Rollback the service to the stable version v1.0.0.",
+    "Monitor HTTP 5xx rate after rollback to confirm resolution.",
+    "Conduct a code review of the currency context changes to prevent KeyError.",
+    "Add unit tests for currency handling logic."
+  ],
+  "proposed_actions": [
+    {
+      "kind": "rollback",
+      "target": "v1.0.0",
+      "reason": "Recent deploy introduced a bug causing request failures."
+    },
+    {
+      "kind": "restart",
+      "target": null,
+      "reason": "Ensure all instances are refreshed after rollback."
+    }
+  ]
+}

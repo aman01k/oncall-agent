@@ -1,0 +1,42 @@
+{
+  "summary": "Deploy v1.3.0 added a cache that stores large byte arrays per request and raises 503 when full, causing memory exhaustion and high 5xx rate. Rolling back to v1.0.0 removes the faulty cache.",
+  "failure_type": "memory_leak",
+  "culprit": "sha:482cc9cf7ed3a77365580a920b5c892bcf8d107e",
+  "confidence": "high",
+  "timeline": [
+    {
+      "ts": "2026-11-12T12:06:54Z",
+      "description": "Deploy v1.3.0 with cache change"
+    },
+    {
+      "ts": "2026-11-12T12:07:00Z",
+      "description": "5xx errors spike to 53/147 requests"
+    },
+    {
+      "ts": "2026-11-12T12:07:10Z",
+      "description": "5xx errors rise to 87/148 requests"
+    }
+  ],
+  "evidence": [
+    {
+      "tool_call_id": "T2",
+      "quote": "\"http_5xx\": 272"
+    },
+    {
+      "tool_call_id": "T4",
+      "quote": "raise HTTPException(status_code=503, detail=\"checkout temporarily unavailable\")"
+    }
+  ],
+  "next_steps": [
+    "Add size limit to cache and evict old entries",
+    "Deploy monitoring for cache size and memory usage",
+    "Run load test to verify fix"
+  ],
+  "proposed_actions": [
+    {
+      "kind": "rollback",
+      "target": "v1.0.0",
+      "reason": "Cache implementation introduced unbounded memory growth causing 5xx"
+    }
+  ]
+}

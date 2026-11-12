@@ -1,0 +1,20 @@
+{
+  "captured_at": "2026-11-12T12:06:46.132Z",
+  "checks": {
+    "/health": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "service": "checkout-api",
+        "time": "2026-11-12T12:06:46.669Z"
+      }
+    },
+    "/health/db": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "pool_checked_out": 1
+      }
+    }
+  }
+}

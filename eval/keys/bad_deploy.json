@@ -1,0 +1,11 @@
+{
+  "failure_type": "bad_deploy",
+  "accepted_culprits": [
+    "v1.1.0",
+    "8b3baf91201ed8026f4304b960ba60a1e1b499af"
+  ],
+  "decoys": [
+    "v1.1.1",
+    "c4303ac564b3b006eb0285dba8101f63e35db117"
+  ]
+}

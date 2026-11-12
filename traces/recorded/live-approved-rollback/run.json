@@ -1,0 +1,22 @@
+{
+  "id": "20261112-180220-600082",
+  "source": "data/snapshots/134f971f8d214bfd8edd2a937cadb3cd",
+  "mode": "agent",
+  "model": "openai/gpt-oss-120b",
+  "seed": 0,
+  "started_at": "2026-11-12T12:32:20.050494Z",
+  "status": "completed",
+  "alert": {
+    "service": "checkout-api",
+    "fired_at": "2026-11-12T12:32:19.601Z",
+    "message": "checkout-api HTTP 5xx rate above 5% over 2 minutes",
+    "observed_rate": 0.1623,
+    "window_seconds": 120
+  },
+  "finished_at": "2026-11-12T12:34:17.048219Z",
+  "llm_calls": 6,
+  "cached_calls": 0,
+  "total_tokens": 13671,
+  "duration_s": 117.0,
+  "replay": true
+}

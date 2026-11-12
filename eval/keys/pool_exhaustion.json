@@ -1,0 +1,11 @@
+{
+  "failure_type": "db_pool_exhaustion",
+  "accepted_culprits": [
+    "v1.2.0",
+    "f2eaf7fc0a00ba0661dcfbcadaa557dcd41355f7"
+  ],
+  "decoys": [
+    "v1.2.1",
+    "5147a57418e4d75414f03306e8b44b39e04bab94"
+  ]
+}

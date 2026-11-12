@@ -1,0 +1,7 @@
+scenario,mode,seed,model,status,correct,evidence_valid,decoy_blamed,failure_type_correct,culprit_correct,confidence,llm_calls,cached_calls,total_tokens,duration_s,run
+bad_deploy,agent,0,openai/gpt-oss-20b,completed,True,True,False,True,True,high,7,0,12704,62.09,runs/eval/v5-bad_deploy-agent-openai-gpt-oss-20b-0
+bad_deploy,baseline,0,openai/gpt-oss-20b,completed,True,True,False,True,True,medium,1,0,3428,26.63,runs/eval/v5-bad_deploy-baseline-openai-gpt-oss-20b-0
+memory_leak,agent,0,openai/gpt-oss-20b,completed,False,True,False,False,True,medium,6,0,10324,116.14,runs/eval/v5-memory_leak-agent-openai-gpt-oss-20b-0
+memory_leak,baseline,0,openai/gpt-oss-20b,completed,False,True,True,False,False,medium,1,0,3439,26.58,runs/eval/v5-memory_leak-baseline-openai-gpt-oss-20b-0
+pool_exhaustion,agent,0,openai/gpt-oss-20b,completed,False,True,False,False,True,medium,6,0,10124,90.79,runs/eval/v5-pool_exhaustion-agent-openai-gpt-oss-20b-0
+pool_exhaustion,baseline,0,openai/gpt-oss-20b,completed,False,True,False,False,True,medium,1,0,4124,31.21,runs/eval/v5-pool_exhaustion-baseline-openai-gpt-oss-20b-0

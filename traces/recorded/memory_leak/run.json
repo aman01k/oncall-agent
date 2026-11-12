@@ -1,0 +1,22 @@
+{
+  "id": "v4-memory_leak-agent-openai-gpt-oss-120b-0",
+  "source": "eval/fixtures/memory_leak",
+  "mode": "agent",
+  "model": "openai/gpt-oss-120b",
+  "seed": 0,
+  "started_at": "2026-11-12T12:20:36.062197Z",
+  "status": "completed",
+  "alert": {
+    "service": "checkout-api",
+    "fired_at": "2026-11-12T12:07:37.469Z",
+    "message": "checkout-api HTTP 5xx rate above 5% over 2 minutes",
+    "observed_rate": 0.4408,
+    "window_seconds": 120
+  },
+  "finished_at": "2026-11-12T12:21:55.607740Z",
+  "llm_calls": 7,
+  "cached_calls": 5,
+  "total_tokens": 11893,
+  "duration_s": 79.54,
+  "replay": true
+}

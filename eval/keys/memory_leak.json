@@ -1,0 +1,11 @@
+{
+  "failure_type": "memory_leak",
+  "accepted_culprits": [
+    "v1.3.0",
+    "482cc9cf7ed3a77365580a920b5c892bcf8d107e"
+  ],
+  "decoys": [
+    "v1.3.1",
+    "f629f46efcf572650245d22b567ab609a8662c4c"
+  ]
+}

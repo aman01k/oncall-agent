@@ -1,0 +1,23 @@
+[
+  {
+    "id": "D1",
+    "ts": "2026-11-12T12:06:52.948Z",
+    "version": "v1.0.0",
+    "sha": "9f9e10d3723f36517521dee6f9ddc7e25306f062",
+    "summary": "Initial checkout implementation"
+  },
+  {
+    "id": "D2",
+    "ts": "2026-11-12T12:06:54.004Z",
+    "version": "v1.3.0",
+    "sha": "482cc9cf7ed3a77365580a920b5c892bcf8d107e",
+    "summary": "Cache checkout context for request reuse"
+  },
+  {
+    "id": "D3",
+    "ts": "2026-11-12T12:06:57.081Z",
+    "version": "v1.3.1",
+    "sha": "f629f46efcf572650245d22b567ab609a8662c4c",
+    "summary": "Update release description"
+  }
+]
