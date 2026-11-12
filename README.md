@@ -2,7 +2,7 @@
 
 An AI agent that investigates a production alert the way an on-call engineer would. It plans its steps, calls tools to gather evidence, and writes a root-cause report with suggested fixes. Any action that changes the system needs human approval first.
 
-> **Status (12 Nov 2026):** project setup and design. No working code yet. See [Progress](#progress) and [Milestones](#milestones).
+> **Status (12 Nov 2026):** design done. Free-tier model chosen (Groq `gpt-oss-120b`, see [provider check](docs/provider_check.md)). A minimal checkout service with JSON logs is running, and connection-pool exhaustion is confirmed. See [Progress](#progress) and [Milestones](#milestones).
 
 ## The problem
 
@@ -87,7 +87,7 @@ Weights add up to 100%. The items marked **demo** add up to the 70% that will be
 
 | # | Item | Weight | Done when | Demo | Status |
 |---|---|---|---|---|---|
-| 1 | Checkout service, 3 faults, load generator, `devctl` | 15% | Each fault pushes 5xx above 5% within 2 min; `reset` brings it below 1% | demo | not started |
+| 1 | Checkout service, 3 faults, load generator, `devctl` | 15% | Each fault pushes 5xx above 5% within 2 min; `reset` brings it below 1% | demo | in progress: service, JSON logs, pool exhaustion check |
 | 2 | Read-only telemetry tools | 10% | Tools work on live data and on snapshots, with output caps and tests | demo | not started |
 | 3 | Agent loop and report schema | 20% | One scenario passes 3/5 runs end to end | demo | not started |
 | 4 | Runbook search | 5% | 5-10 runbooks searchable; the agent cites them | demo | not started |
@@ -130,13 +130,27 @@ docs/         design brief, decision log, evaluation method, demo script
 
 ## Getting started
 
-Setup steps will be added as the components land. To prepare the environment:
+Prepare the environment (Python 3.14):
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env   # then add your own free-tier API key
+```
+
+Run the checkout service. Logs go to `data/logs/service.jsonl`:
+
+```bash
+python -m uvicorn service.app:app --port 8001 --no-access-log
+```
+
+Checks:
+
+```bash
+python -m pytest -q                      # service tests
+python scripts/pool_check.py             # confirms connection-pool exhaustion under 20 concurrent requests
+python scripts/provider_check.py groq --tool-choice required --runs 3   # free-tier model check
 ```
 
 ## Non-goals
