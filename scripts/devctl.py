@@ -113,10 +113,12 @@ def main():
     sub.add_parser("down")
     sub.add_parser("reset")
     sub.add_parser("restart")
-    inject = sub.add_parser("inject")
-    inject.add_argument("scenario", choices=FAULT_TAGS)
+    inject_parser = sub.add_parser("inject")
+    inject_parser.add_argument("scenario", choices=FAULT_TAGS)
     rollback = sub.add_parser("rollback")
     rollback.add_argument("tag")
+    capture_parser = sub.add_parser("capture")
+    capture_parser.add_argument("destination")
     status = sub.add_parser("check")
     status.add_argument("--seconds", type=float, default=10)
     args = parser.parse_args()
@@ -139,6 +141,9 @@ def main():
                 opts = settings()
                 down()
                 result = up(**opts)
+            elif args.command == "capture":
+                from capture import capture
+                result = {"snapshot": str(capture(args.destination))}
             else:
                 if not 0 < args.seconds <= 120:
                     raise ValueError("check window must be between 0 and 120 seconds")

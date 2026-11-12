@@ -2,7 +2,7 @@
 
 An AI agent that investigates a production alert the way an on-call engineer would. It plans its steps, calls tools to gather evidence, and writes a root-cause report with suggested fixes. Any action that changes the system needs human approval first.
 
-> **Status (12 Nov 2026):** free-tier model chosen (Groq `gpt-oss-120b`). The local failure lab now has three tagged faults, concurrent traffic, JSON logs, SQLite metrics, and restart/rollback controls. The agent and dashboard are next. See [local lab instructions](docs/local-lab.md).
+> **Status (12 Nov 2026):** core demo implemented and verified: live alert → agent investigation → human-approved rollback → healthy service. Automated tests and all three fault mechanisms pass. Pilot evaluation is published with wrong diagnoses and quota-limited attempts included. Completing the main-model evaluation requires free quota to replenish.
 
 ## The problem
 
@@ -34,7 +34,7 @@ When a production service breaks, the on-call engineer spends the first part of 
    - database connection-pool exhaustion
    - a memory leak
 
-   The agent is compared against a fixed pipeline that calls every tool once and asks the model a single question.
+   The agent is compared against a fixed pipeline that collects a fixed set of evidence and asks the model a single question.
 
 ## Architecture
 
@@ -87,15 +87,15 @@ Weights add up to 100%. The items marked **demo** add up to the 70% that will be
 
 | # | Item | Weight | Done when | Demo | Status |
 |---|---|---|---|---|---|
-| 1 | Checkout service, 3 faults, load generator, `devctl` | 15% | Each fault pushes 5xx above 5% within 2 min; `reset` brings it below 1% | demo | implemented; live fault/recovery acceptance check available |
-| 2 | Read-only telemetry tools | 10% | Tools work on live data and on snapshots, with output caps and tests | demo | not started |
-| 3 | Agent loop and report schema | 20% | One scenario passes 3/5 runs end to end | demo | not started |
-| 4 | Runbook search | 5% | 5-10 runbooks searchable; the agent cites them | demo | not started |
-| 5 | Approval gate and executors | 10% | Approve runs restart/rollback in the sandbox, then a recovery check | demo | not started |
-| 6 | Trace dashboard and replay | 10% | Live trace, report view, labelled replay | demo | not started |
-| 7 | Snapshot evaluation, grader, baseline | 15% | Results table for agent vs baseline committed | | not started |
-| 8 | Webhook intake | 5% | `POST /alerts` starts a run | | not started |
-| 9 | Documentation and technical blog | 10% | Blog submitted | | in progress |
+| 1 | Checkout service, 3 faults, load generator, `devctl` | 15% | Each fault pushes 5xx above 5% within 2 min; `reset` brings it below 1% | demo | done: all three mechanisms and reset verified |
+| 2 | Read-only telemetry tools | 10% | Tools work on live data and on snapshots, with output caps and tests | demo | done: frozen tools, clock handling and output caps |
+| 3 | Agent loop and report schema | 20% | One scenario passes 3/5 runs end to end | demo | implemented: main-model and live bad-deploy reports pass; 3/5 robustness goal pending |
+| 4 | Runbook search | 5% | 5-10 runbooks searchable; the agent cites them | demo | done: six runbooks/past-incident guides and search |
+| 5 | Approval gate and executors | 10% | Approve runs restart/rollback in the sandbox, then a recovery check | demo | done: explicitly approved live rollback and health/error recovery verified |
+| 6 | Trace dashboard and replay | 10% | Live trace, report view, labelled replay | demo | done: auto-refreshing dashboard and labelled real replays |
+| 7 | Snapshot evaluation, grader, baseline | 15% | Results table for agent vs baseline committed | | partial: pilot CSVs published; further trials blocked by free quotas |
+| 8 | Webhook intake | 5% | `POST /alerts` starts a run | | done: local webhook and bounded queue tested |
+| 9 | Documentation and technical blog | 10% | Blog submitted | | drafts ready: demo, evaluation, blog and viva notes; submission pending |
 
 ## Milestones
 
@@ -148,7 +148,7 @@ python -m uvicorn service.app:app --port 8001 --no-access-log
 Checks:
 
 ```bash
-python -m pytest -q                      # service tests
+python -m pytest -q                      # service, agent, approval and interface tests
 python scripts/pool_check.py             # confirms connection-pool exhaustion under 20 concurrent requests
 python scripts/scenario_check.py         # checks all three real faults and resets (about 2 min)
 python scripts/provider_check.py groq --tool-choice required --runs 3   # free-tier model check
@@ -165,6 +165,28 @@ python scripts/devctl.py down
 ```
 
 The other scenarios are `pool_exhaustion` and `memory_leak`. See [the lab guide](docs/local-lab.md) for tagged releases, metrics, memory limits and recovery checks.
+
+## Investigate an incident
+
+```bash
+python -m streamlit run ui/dashboard.py --server.address 127.0.0.1
+```
+
+Open the local dashboard, inject a fault, then capture the alert and start an
+investigation. Review the report before approving a rollback. The agent runs in
+a separate process; model-selected tools and plans are recorded in a trace.
+
+For a frozen scenario:
+
+```bash
+python -m agent.runner eval/fixtures/bad_deploy --model openai/gpt-oss-20b
+python -m eval.evaluate --model openai/gpt-oss-120b --runs 1
+python scripts/record_replays.py
+```
+
+See the [demo guide](docs/demo.md), [evaluation method](docs/evaluation.md) and
+[local lab guide](docs/local-lab.md). API keys stay in `.env`; the free provider
+may pause investigations when quota is tight. Replays are labelled explicitly.
 
 ## Non-goals
 
@@ -185,3 +207,12 @@ This project differs in being small and local-first, evaluated against decoy sig
 
 - [Design brief](docs/concepts_brief.md)
 - [Decision log](docs/decisions.md)
+
+## Current validation and submission notes
+
+- 23 automated tests pass.
+- Real fault checks cover bad deploy, pool exhaustion and memory leak.
+- Human-approved live recovery: 135 requests, zero HTTP 5xx, zero connection errors, both health probes pass.
+- [Pilot results](docs/evaluation-results.md) include all final-experiment attempts, including wrong diagnoses and quota failures.
+- [Technical blog draft](docs/technical-blog.md) and [viva notes](docs/viva-notes.md) explain the build and its limitations.
+- Replays are selected successful real investigations; they are never presented as fresh runs or benchmark averages.

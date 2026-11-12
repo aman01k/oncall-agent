@@ -44,3 +44,12 @@ def test_transport_errors_are_separate_from_5xx(tmp_path, monkeypatch):
     assert result["http_5xx"] == 1
     assert result["network_errors"] == 1
     assert result["http_5xx_rate"] == pytest.approx(1 / 3)
+
+
+def test_cli_inject_calls_function_not_parser(tmp_path, monkeypatch, capsys):
+    import devctl
+    monkeypatch.setattr(devctl, "DATA", tmp_path)
+    monkeypatch.setattr(sys, "argv", ["devctl", "inject", "bad_deploy"])
+    monkeypatch.setattr(devctl, "inject", lambda scenario: {"injected": scenario})
+    devctl.main()
+    assert '"injected": "bad_deploy"' in capsys.readouterr().out
