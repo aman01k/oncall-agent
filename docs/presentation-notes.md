@@ -43,3 +43,9 @@ The stricter causal-v1 rule has offline tests, but fresh model evaluation remain
 - Use replay transparently when the provider is unavailable.
 
 The editable assessment deck accompanies this project in the chat. This file keeps the narrative and speaker notes portable in GitHub.
+
+## Recorded rehearsal screenshot
+
+This screenshot shows a historical replay, not a new live investigation or remediation.
+
+![Recorded replay rehearsal](images/replay-rehearsal.jpg)
