@@ -210,7 +210,7 @@ This project differs in being small and local-first, evaluated against decoy sig
 
 ## Current validation and submission notes
 
-- 23 automated tests pass.
+- 24 automated tests pass.
 - Real fault checks cover bad deploy, pool exhaustion and memory leak.
 - Human-approved live recovery: 135 requests, zero HTTP 5xx, zero connection errors, both health probes pass.
 - [Pilot results](docs/evaluation-results.md) include all final-experiment attempts, including wrong diagnoses and quota failures.

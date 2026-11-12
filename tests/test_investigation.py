@@ -61,6 +61,15 @@ def test_tools_reject_traversal_and_arbitrary_calls(evidence):
         tools.git_show("HEAD; rm -rf something")
 
 
+def test_undeployed_revision_is_not_exposed(evidence):
+    path = evidence / "commits.json"
+    commits = json.loads(path.read_text())
+    commits["v9.0.0"] = {"diff": "unreleased code"}
+    path.write_text(json.dumps(commits))
+    with pytest.raises(ValueError):
+        Tools(evidence).git_show("v9.0.0")
+
+
 def test_fabricated_citation_rejected():
     report = Report.model_validate(valid_report())
     assert verify_evidence(report, {"T1": {"text": "missing currency"}, "T2": {"text": "currency context"}}) == []

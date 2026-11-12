@@ -102,3 +102,7 @@ The live report identified the currency-context release. aman01k explicitly appr
 Both free Groq models reached their daily quotas during development/evaluation. The main model reported a 200,000-token daily limit. v6 pilot CSVs retain wrong diagnoses and quota failures separately; no paid fallback is used. Failed attempts can be archived and resumed from cached prefixes after quota replenishes. Completed wrong diagnoses are never retried by --retry-failed.
 
 **Reason:** hiding failed runs or calling cached resumes independent trials would make the evaluation misleading. The fixed baseline collects six predefined results, including a runbook search and the latest deploy diff; it does not adaptively read additional guides or diffs. Claims are limited to that collector. Provider-specific output settings follow [Groq reasoning](https://console.groq.com/docs/reasoning) and [structured output](https://console.groq.com/docs/structured-outputs) documentation.
+
+## 2026-11-12: Restrict evidence and stale approvals
+
+Commit lookup exposes only releases actually deployed before the alert, even if the snapshot contains other sandbox revisions. The dashboard preserves executed decision records and disables further actions once a deployment changes. The executor independently enforces the same stale-snapshot check.

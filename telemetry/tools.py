@@ -91,7 +91,9 @@ class Tools:
 
     def git_show(self, revision):
         commits = self.read("commits.json")
-        if revision not in commits:
+        deployed = {ref for row in self.read("deploys.json") if timestamp(row["ts"]) <= self.clock
+                    for ref in (row["version"], row["sha"])}
+        if revision not in commits or revision not in deployed:
             raise ValueError("Unknown revision; use a full SHA or tag returned by list_deploys")
         return commits[revision]
 

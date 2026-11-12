@@ -107,23 +107,27 @@ with live:
                                and Path(metadata.get("source", "/")).resolve().is_relative_to(ROOT / "data/snapshots"))
                 captured = read_json(Path(metadata.get("source", "/")) / "deployment-state.json") or {}
                 st.caption("Captured release: " + captured.get("version", "unknown"))
+                deployments = read_json(ROOT / "data/deploys.json") or []
+                current = deployments[-1] if deployments else {}
+                same_deployment = bool(captured.get("id") == current.get("id") and captured.get("sha") == current.get("sha"))
                 for index, action in enumerate(report.get("proposed_actions", [])):
                     st.write(f"**Proposed {action['kind']}** → {action.get('target') or 'current release'}: {action['reason']}")
                     decision = read_json(directory / f"decision-{index}.json")
-                    if not can_approve:
-                        st.caption("Remediation disabled for evaluation snapshots and incomplete runs.")
-                        continue
                     if decision:
                         st.json(decision)
-                    else:
-                        a, b = st.columns(2)
-                        for column, label, approval in [(a, "Approve and execute", True), (b, "Reject", False)]:
-                            if column.button(label, key=f"{directory.name}-{index}-{approval}"):
-                                try:
-                                    with st.spinner("Recording decision and checking recovery…"):
-                                        st.json(decide(directory, index, approval, actor))
-                                except (OSError, ValueError) as exc:
-                                    st.error(str(exc))
+                        continue
+                    if not can_approve or not same_deployment:
+                        st.caption("Remediation disabled: this is an evaluation, incomplete report or an older deployment. Capture a new incident before further actions.")
+                        continue
+                    a, b = st.columns(2)
+                    for column, label, approval in [(a, "Approve and execute", True), (b, "Reject", False)]:
+                        if column.button(label, key=f"{directory.name}-{index}-{approval}"):
+                            try:
+                                with st.spinner("Recording decision and checking recovery…"):
+                                    st.json(decide(directory, index, approval, actor))
+                            except (OSError, ValueError) as exc:
+                                st.error(str(exc))
+
         else:
             st.info("No investigations yet. Inject a fault, then capture an alert.")
         st.button("Refresh progress")
