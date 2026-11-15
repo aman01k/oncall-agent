@@ -49,3 +49,7 @@ The editable assessment deck accompanies this project in the chat. This file kee
 This screenshot shows a historical replay, not a new live investigation or remediation.
 
 ![Recorded replay rehearsal](images/replay-rehearsal.jpg)
+
+## MVP submission addendum, 16 November
+
+A fresh v7 main-model bad-deploy smoke check passed in about 57 seconds with six uncached responses, including the new causal-code proof. State this separately from the unchanged v6 pilot table. The evidence was frozen, not a new live fault. Broader multi-scenario validation remains incomplete. See MVP_SUBMISSION.md.

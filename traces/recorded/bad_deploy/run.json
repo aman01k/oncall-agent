@@ -1,10 +1,10 @@
 {
-  "id": "v6-bad_deploy-agent-openai-gpt-oss-120b-0",
+  "id": "submission-smoke-884bfd05",
   "source": "eval/fixtures/bad_deploy",
   "mode": "agent",
   "model": "openai/gpt-oss-120b",
-  "seed": 0,
-  "started_at": "2026-11-12T12:36:08.129360Z",
+  "seed": 101,
+  "started_at": "2026-11-15T21:10:36.876500Z",
   "status": "completed",
   "alert": {
     "service": "checkout-api",
@@ -13,10 +13,13 @@
     "observed_rate": 0.1918,
     "window_seconds": 120
   },
-  "finished_at": "2026-11-12T12:36:39.548346Z",
-  "llm_calls": 4,
+  "evidence_policy": "causal-v1",
+  "finished_at": "2026-11-15T21:11:33.514287Z",
+  "llm_calls": 6,
   "cached_calls": 0,
-  "total_tokens": 6202,
-  "duration_s": 31.42,
-  "replay": true
+  "total_tokens": 12587,
+  "provider_tokens": 12587,
+  "duration_s": 56.64,
+  "replay": true,
+  "recording_purpose": "Single-scenario v7 submission smoke check; not an accuracy benchmark"
 }

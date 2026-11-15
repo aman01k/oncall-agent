@@ -1,43 +1,42 @@
 {
-  "summary": "A recent deployment (v1.1.0) introduced a KeyError in the checkout API due to missing 'currency' in the request context, causing a spike in 5xx errors.",
+  "summary": "A recent deployment (v1.1.0) introduced a KeyError in checkout-api when accessing a missing 'currency' field in pricing context, causing 5xx errors. Rolling back to v1.0.0 removes the faulty code.",
   "failure_type": "bad_deploy",
-  "culprit": "v1.1.0 deployment of checkout-api",
-  "confidence": "medium",
+  "culprit": "8b3baf91201ed8026f4304b960ba60a1e1b499af",
+  "confidence": "high",
   "timeline": [
     {
+      "ts": "2026-11-12T12:05:41.551Z",
+      "description": "Deploy v1.1.0 added currency context code"
+    },
+    {
       "ts": "2026-11-12T12:05:42.150Z",
-      "description": "First 500 error logged with KeyError for missing 'currency' after v1.1.0 was released."
+      "description": "First KeyError observed in checkout-api logs"
     },
     {
       "ts": "2026-11-12T12:06:10.020Z",
-      "description": "Alert fired: checkout-api HTTP 5xx rate above 5% over 2 minutes."
+      "description": "Alert fired: 5xx rate >5%"
     }
   ],
   "evidence": [
     {
-      "tool_call_id": "T1",
+      "tool_call_id": "T3",
       "quote": "KeyError /checkout 500"
     },
     {
-      "tool_call_id": "T2",
+      "tool_call_id": "T4",
       "quote": "+        currency = context[\"currency\"]"
     }
   ],
   "next_steps": [
-    "Rollback checkout-api to version v1.0.0",
-    "Add unit test for currency context handling",
-    "Monitor error rate after rollback"
+    "Monitor checkout-api error rate after rollback",
+    "Validate that KeyError no longer occurs in logs",
+    "Review pricing service tests for currency handling"
   ],
   "proposed_actions": [
     {
       "kind": "rollback",
       "target": "v1.0.0",
-      "reason": "KeyError caused by missing currency field in new pricing logic"
-    },
-    {
-      "kind": "restart",
-      "target": null,
-      "reason": "Ensure service restarts cleanly after rollback"
+      "reason": "KeyError due to missing currency in request context"
     }
   ]
 }

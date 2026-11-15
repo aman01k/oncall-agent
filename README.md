@@ -2,7 +2,7 @@
 
 An AI agent that investigates a production alert the way an on-call engineer would. It plans its steps, calls tools to gather evidence, and writes a root-cause report with suggested fixes. Any action that changes the system needs human approval first.
 
-> **Status (12 Nov 2026):** core demo implemented and verified: live alert → agent investigation → human-approved rollback → healthy service. Automated tests and all three fault mechanisms pass. Pilot evaluation is published with wrong diagnoses and quota-limited attempts included. Completing the main-model evaluation requires free quota to replenish.
+> **Submission status (16 Nov 2026):** local MVP available. The core bad-deploy investigation and historical human-approved recovery can be demonstrated. A fresh v7 bad-deploy smoke test passed alongside 36 automated tests. The wider diagnosis benchmark remains incomplete. See [MVP scope, limitations and future work](MVP_SUBMISSION.md).
 
 ## The problem
 
@@ -12,7 +12,7 @@ When a production service breaks, the on-call engineer spends the first part of 
 
 ## What it does
 
-1. **Alert intake.** An alert such as `checkout-api 5xx > 5% over 2m` is raised by a manual trigger (a webhook comes later).
+1. **Alert intake.** An alert such as `checkout-api 5xx > 5% over 2m` is raised by a manual trigger. A local webhook can also start an investigation from a captured snapshot.
 2. **Investigation loop.** At each step the model sees all results so far and picks the next tool or stops. No tool order is hard-coded. Tools:
    - search logs
    - query metrics
@@ -83,7 +83,9 @@ When a production service breaks, the on-call engineer spends the first part of 
 
 ## Progress
 
-Weights add up to 100%. The items marked **demo** add up to the 70% that will be shown live on 19 Nov.
+The table below tracks the original full-project acceptance targets. It is not a claim that every target has passed. The submission freezes a smaller MVP focused on the bad-deploy investigation; [MVP_SUBMISSION.md](MVP_SUBMISSION.md) separates implemented behavior, current limitations and future scope.
+
+Weights add up to 100%. Items marked **demo** describe the originally planned 70% demo scope, not a verified completion score.
 
 | # | Item | Weight | Done when | Demo | Status |
 |---|---|---|---|---|---|
@@ -93,7 +95,7 @@ Weights add up to 100%. The items marked **demo** add up to the 70% that will be
 | 4 | Runbook search | 5% | 5-10 runbooks searchable; the agent cites them | demo | done: six runbooks/past-incident guides and search |
 | 5 | Approval gate and executors | 10% | Approve runs restart/rollback in the sandbox, then a recovery check | demo | done: explicitly approved live rollback and health/error recovery verified |
 | 6 | Trace dashboard and replay | 10% | Live trace, report view, labelled replay | demo | done: auto-refreshing dashboard and labelled real replays |
-| 7 | Snapshot evaluation, grader, baseline | 15% | Results table for agent vs baseline committed | | partial: pilot CSVs published; further trials blocked by free quotas |
+| 7 | Snapshot evaluation, grader, baseline | 15% | Results table for agent vs baseline committed | | partial: pilot CSVs published; full validation pending; prior runs hit free quotas |
 | 8 | Webhook intake | 5% | `POST /alerts` starts a run | | done: local webhook and bounded queue tested |
 | 9 | Documentation and technical blog | 10% | Blog submitted | | drafts ready: demo, evaluation, blog and viva notes; submission pending |
 
@@ -136,7 +138,7 @@ Prepare the environment (Python 3.14):
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env   # then add your own free-tier API key
+cp .env.example .env   # fresh checkout only: do not overwrite an existing .env
 ```
 
 Run the checkout service. Logs go to `data/logs/service.jsonl`:
@@ -187,6 +189,12 @@ python scripts/record_replays.py
 See the [demo guide](docs/demo.md), [evaluation method](docs/evaluation.md) and
 [local lab guide](docs/local-lab.md). API keys stay in `.env`; the free provider
 may pause investigations when quota is tight. Replays are labelled explicitly.
+
+## Future scope
+
+Production telemetry connectors, multiple-service correlation, authenticated external webhooks, role-based approvals and semantic runbook retrieval remain outside this MVP. A larger independent evaluation is also pending. Existing pilot errors and the unmet reliability target remain documented limitations, rather than completed capabilities.
+
+See [the submission note](MVP_SUBMISSION.md) for the precise demo boundary.
 
 ## Non-goals
 

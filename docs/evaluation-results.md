@@ -2,6 +2,8 @@
 
 Experiment: **v6**. Real captured evidence; no simulated LLM responses.
 
+These are historical pilot outcomes. A separate v7 bad-deploy submission smoke check passed on 16 November; see [MVP_SUBMISSION.md](../MVP_SUBMISSION.md). That single run is not pooled into this benchmark.
+
 | Model | Method | Attempts | Completed reports | Correct | Wrong completed | Quota-limited |
 |---|---|---:|---:|---:|---:|---:|
 | openai/gpt-oss-120b | agent | 3 | 1 | 1 | 0 | 2 |

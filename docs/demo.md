@@ -59,3 +59,9 @@ production integration.
 Run `python scripts/rehearse.py`. It verifies the three saved real recordings and the historical approved recovery without making model requests, injecting faults or executing actions.
 
 For an approximately seven-minute presentation: spend one minute on the problem and workflow, one minute on the real fault lab, two minutes on the recorded incident and human decision, one minute on the pilot table, and two minutes on limitations and questions. Use `docs/presentation-notes.md` with the assessment deck. State the v6 results and v7 pending validation separately.
+
+## Three-hour submission freeze
+
+The submitted MVP centers on one bad-deploy investigation. Use the recorded real approval/recovery for the fallback and label it clearly. Treat memory/database diagnosis coverage and the three-out-of-five robustness target as pending validation, even though their fault mechanisms are implemented.
+
+Read `MVP_SUBMISSION.md` before presenting. Do not turn incomplete reliability checks into claims that the project is fully validated, and do not remove wrong pilot outcomes from the results.

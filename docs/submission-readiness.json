@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-11-15T21:10:36.514251+00:00",
+  "source": "eval/fixtures/bad_deploy",
+  "provider": "Groq",
+  "model": "openai/gpt-oss-120b",
+  "system_changes": false,
+  "smoke_correct": true,
+  "smoke_status": "completed",
+  "error": null,
+  "run": "runs/submission-smoke-884bfd05",
+  "llm_calls": 6,
+  "cached_calls": 0,
+  "duration_s": 56.64,
+  "grade": {
+    "status": "completed",
+    "correct": true,
+    "evidence_valid": true,
+    "decoy_blamed": false,
+    "failure_type_correct": true,
+    "culprit_correct": true,
+    "confidence": "high",
+    "causal_proof_valid": true
+  }
+}
